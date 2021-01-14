@@ -9,7 +9,7 @@ const MONGODB_URI = process.env.MONGODB_URI
 app.use(express.json())
 app.use(express.static('public'))
 
-const resturantController = require('./controllers/restaurant_controller.js')
+const restaurantController = require('./controllers/restaurant_controller.js')
 app.use('/restaurant', restaurantController)
 
 mongoose.connect(MONGODB_URI, {
