@@ -24,5 +24,5 @@ class NewRestaurantForm extends React.Component {
 
 
 ReactDOM.render(
-  <NewRestaurantForm></NewRestaurantForm>, document.querySelector('#feedApp')
+  <NewRestaurantForm></NewRestaurantForm>, document.querySelector('#testApp')
 )

@@ -1,6 +1,14 @@
 class RestaurantFeed extends React.Component {
-
-
+  state = {
+    restaurants: []
+  }
+  componentDidMount = () => {
+    axios.('/restaurant/').then(response => {
+      this.setState({
+        restaurants: response.data
+      })
+    })
+  }
 
   render = () => {
     return (
@@ -12,5 +20,5 @@ class RestaurantFeed extends React.Component {
 
 
 ReactDOM.render(
-  <NewRestaurantForm></NewRestaurantForm>, document.querySelector('#testApp')
+  <RestaurantFeed></RestaurantFeed>, document.querySelector('#feedApp')
 )
