@@ -12,10 +12,11 @@ class Gatekeeper extends React.Component {
     return (
       <div id='appContainer'>
         <nav id='createRestDiv'>
-          <div id='createShowButton' addClass='navBtn' onClick={this.showForm}>Create a Restaurant Profile</div>
+          <div id='createShowButton' className='navBtn' onClick={this.showForm}>Create a Restaurant Profile</div>
 
         </nav>
         <div id='testApp' style={{display: 'none'}}></div>
+        <div id='feedApp'></div>
       </div>
     )
   }
