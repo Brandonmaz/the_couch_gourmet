@@ -20,7 +20,7 @@ class NewRestaurantForm extends React.Component {
       let userName = false
       let password = false
       let about = false
-      if(this.state.name.length < 5 || this.state.name.length > 16) {
+      if(this.state.username.length < 5 || this.state.username.length > 16) {
           document.querySelector('#name').previousSibling.style.display = 'block'
         } else {
           document.querySelector('#name').previousSibling.style.display = 'none'
