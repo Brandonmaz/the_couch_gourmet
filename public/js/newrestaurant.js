@@ -30,7 +30,7 @@ class NewRestaurantForm extends React.Component {
           document.querySelector('#password').previousSibling.style.display = 'none'
           password = true
         }
-      if(this.state.about === "") {
+      if(this.state.about.length === 0) {
           document.querySelector('#about').previousSibling.style.display = 'block'
         } else {
           document.querySelector('#about').previousSibling.style.display = 'none'
@@ -38,12 +38,21 @@ class NewRestaurantForm extends React.Component {
         }
     this.checkRequired(userName, password, about)
   }
-
+  submitForm = () => {
+    event.preventDefault()
+    document.querySelector('#newRestForm').reset()
+    this.props.createRestaurant(this.state)
+    this.setState({
+      name: "",
+      password: "",
+      about: ""
+    })
+  }
   render = () => {
     return (
       <div>
         <h1>New Restaurant Works</h1>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.submitForm} id='newRestForm'>
             <label htmlFor="name">Name</label>
             <h6>This field is required and must be between 5 and 16 characters.</h6>
             <input type="text" id="name" onChange={this.changeState}/>
@@ -61,9 +70,3 @@ class NewRestaurantForm extends React.Component {
     )
   }
 }
-
-
-
-ReactDOM.render(
-  <NewRestaurantForm></NewRestaurantForm>, document.querySelector('#testApp')
-)
