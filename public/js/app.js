@@ -1,4 +1,4 @@
-class App extends React.Component {
+class Gatekeeper extends React.Component {
 
   showForm = () => {
     if(document.querySelector('#testApp').style.display === 'block') {
@@ -10,10 +10,12 @@ class App extends React.Component {
 
   render = () => {
     return (
-      <div>
-        <h1 onClick={this.showForm}>App.js</h1>
-        <div id='testApp'>
-        </div>
+      <div id='appContainer'>
+        <nav id='createRestDiv'>
+          <div id='createShowButton' addClass='navBtn' onClick={this.showForm}>Create a Restaurant Profile</div>
+
+        </nav>
+        <div id='testApp' style={{display: 'none'}}></div>
       </div>
     )
   }
@@ -21,5 +23,5 @@ class App extends React.Component {
 
 
 ReactDOM.render (
-  <App></App>, document.querySelector('main')
+  <Gatekeeper></Gatekeeper>, document.querySelector('main')
 )
