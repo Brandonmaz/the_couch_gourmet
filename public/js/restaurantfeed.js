@@ -16,7 +16,7 @@ class RestaurantFeed extends React.Component {
       {this.state.restaurants.map((restaurant) => {
         return(
           <ul>
-            <li>{restaurant.name}</li>
+            <li>{restaurant.username}</li>
             <li>{restaurant.about}</li>
             <img src={restaurant.password} alt={restaurant.name}/>
           </ul>
