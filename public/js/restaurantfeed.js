@@ -3,7 +3,7 @@ class RestaurantFeed extends React.Component {
     restaurants: []
   }
   componentDidMount = () => {
-    axios.('/restaurant/').then(response => {
+    axios.get('/restaurant/').then(response => {
       this.setState({
         restaurants: response.data
       })
@@ -12,7 +12,17 @@ class RestaurantFeed extends React.Component {
 
   render = () => {
     return (
-      <h1>Feed Works</h1>
+      <div>
+      {this.state.restaurants.map((restaurant) => {
+        return(
+          <ul>
+            <li>{restaurant.name}</li>
+            <li>{restaurant.about}</li>
+            <img src={restaurant.image} alt={restaurant.name}/>
+          </ul>
+        )
+      })}
+      </div>
     )
   }
 }
