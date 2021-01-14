@@ -10,9 +10,13 @@ restaurant.get('/', (req, res) => {
 })
 restaurant.post('/', (req, res) => {
   Restaurant.create(req.body, (error, createRestaurant) => {
-    Restaurant.find({}, (error, foundRestaurant) => {
-      res.json(foundRestaurant)
-    })
+    if(error) {
+      console.log(error);
+    } else {
+      Restaurant.find({}, (error, foundRestaurant) => {
+        res.json(foundRestaurant)
+      })
+    }
   })
 })
 restaurant.put('/:id', (req, res) => {
