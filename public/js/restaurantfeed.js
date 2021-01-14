@@ -18,7 +18,7 @@ class RestaurantFeed extends React.Component {
           <ul>
             <li>{restaurant.name}</li>
             <li>{restaurant.about}</li>
-            <img src={restaurant.image} alt={restaurant.name}/>
+            <img src={restaurant.password} alt={restaurant.name}/>
           </ul>
         )
       })}
