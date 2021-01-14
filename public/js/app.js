@@ -10,12 +10,14 @@ class Gatekeeper extends React.Component {
     }
   }
   createRestaurant = (data) => {
+    event.preventDefault()
     axios.post('/restaurant/', data).then(response => {
       this.setState({
         restaurants: response.data
       })
+      document.querySelector('#newRestForm').reset()
+      this.showForm()
     })
-    this.showForm()
   }
   render = () => {
     return (

@@ -1,6 +1,6 @@
 class NewRestaurantForm extends React.Component {
   state = {
-    name: "",
+    username: "",
     password: "",
     about: ""
   }
@@ -13,7 +13,9 @@ class NewRestaurantForm extends React.Component {
     }
   changeState = (event) => {
     this.setState({
-      [event.target.id]: event.target.value
+      username: document.querySelector('#name').value,
+      password: document.querySelector('#password').value,
+      about: document.querySelector('#about').value
     })
       let userName = false
       let password = false
@@ -24,7 +26,7 @@ class NewRestaurantForm extends React.Component {
           document.querySelector('#name').previousSibling.style.display = 'none'
           userName = true
         }
-      if(this.state.password < 7 || this.state.password > 16) {
+      if(this.state.password.length < 7 || this.state.password.length > 50) {
           document.querySelector('#password').previousSibling.style.display = 'block'
         } else {
           document.querySelector('#password').previousSibling.style.display = 'none'
@@ -39,14 +41,7 @@ class NewRestaurantForm extends React.Component {
     this.checkRequired(userName, password, about)
   }
   submitForm = () => {
-    event.preventDefault()
-    document.querySelector('#newRestForm').reset()
     this.props.createRestaurant(this.state)
-    this.setState({
-      name: "",
-      password: "",
-      about: ""
-    })
   }
   render = () => {
     return (
