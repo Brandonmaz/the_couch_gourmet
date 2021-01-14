@@ -16,6 +16,7 @@ class Gatekeeper extends React.Component {
 
         </nav>
         <div id='testApp' style={{display: 'none'}}></div>
+        <div id='feedApp'></div>
       </div>
     )
   }
