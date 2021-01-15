@@ -75,10 +75,10 @@ class LoginForm extends React.Component {
                   <input type="radio" id="patronType" onChange={this.changeSubmit} className='loginSwitch'/>
                   <label htmlFor="patronType"><b>Patron Account</b></label>
                 </div>
-                
+
                 <h6>{this.props.error}</h6>
                 <input className="myButtonLogin" type="submit" id="submitLogin" value="Login" style={{display: 'none'}}/>
-                <input className="myButtonCancel" type="submit" id="submitLogin" value="Cancel"/>
+                <div className="myButtonCancel" id="enterLoginNotice">Cancel</div>
 
                 <span className="psw">Forgot <a href="#">password?</a></span>
               </div>
