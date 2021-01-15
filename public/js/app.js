@@ -26,6 +26,14 @@ class Gatekeeper extends React.Component {
       this.showForm()
     })
   }
+  editRestaurant = (data, id) => {
+    event.preventDefault()
+    axios.put('/restaurant/' + id, data).then(response => {
+      this.setState({
+        restaurants: response.data
+      })
+    })
+  }
   render = () => {
     return (
       <div id='appContainer'>
@@ -37,7 +45,7 @@ class Gatekeeper extends React.Component {
           <NewRestaurantForm createRestaurant={this.createRestaurant}></NewRestaurantForm>
         </div>
         <div id='feedApp'>
-          <RestaurantFeed restaurants={this.state.restaurants}></RestaurantFeed>
+          <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant}></RestaurantFeed>
         </div>
       </div>
     )
