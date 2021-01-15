@@ -76,6 +76,23 @@ class Gatekeeper extends React.Component {
       })
     })
   }
+  changeNav = (string) => {
+    document.querySelector('#loggedOutNav').style.display = 'none'
+    if(string === 'user') {
+      document.querySelector('#currentPatronName').innerHTML = this.state.sessions.currentUser.username
+      document.querySelector('#patronNav').style.display = 'block'
+    } else {
+      document.querySelector('#currentRestaurantName').innerHTML = this.state.sessions.currentRestaurant.username
+      document.querySelector('#restaurantNav').style.display = 'block'
+    }
+  }
+  resetNav = () => {
+    document.querySelector('#currentPatronName').innerHTML = ''
+    document.querySelector('#patronNav').style.display = 'none'
+    document.querySelector('#currentRestaurantName').innerHTML = ''
+    document.querySelector('#restaurantNav').style.display = 'none'
+    document.querySelector('#loggedOutNav').style.display = 'block'
+  }
   login = (data) => {
     event.preventDefault()
     axios.post('/sessions/', data).then(response => {
@@ -94,6 +111,9 @@ class Gatekeeper extends React.Component {
             error: ""
           }
         })
+        document.querySelector('#loginForm').reset()
+        document.querySelector('#loginDiv').style.display = 'none'
+        this.changeNav('restaurant')
       }
     })
   }
@@ -115,16 +135,39 @@ class Gatekeeper extends React.Component {
             error: ""
           }
         })
+        document.querySelector('#loginForm').reset()
+        document.querySelector('#loginDiv').style.display = 'none'
+        this.changeNav('user')
       }
     })
+  }
+  logout = () => {
+    this.setState({
+      sessions:{
+        currentRestaurant: {},
+        currentUser: {},
+        error: ""
+      }
+    })
+    this.resetNav()
   }
   render = () => {
     return (
       <div id='appContainer'>
-        <nav id='topNav'>
+        <nav id='loggedOutNav' className='navBar'>
           <div id='createShowButton' className='navBtn' onClick={this.showForm}>Create a Restaurant Profile</div>
           <div id='createUserButton' className='navBtn' onClick={this.showNewUser}>Create a Patron Profile</div>
           <div id='loginShowButton' className='navBtn' onClick={this.showLogin}>Login</div>
+        </nav>
+        <nav id='restaurantNav' className='navBar' style={{display:'none'}}>
+          <div className='currentUserName' id='currentRestaurantName'>
+          </div>
+          <div id='logoutButton' className='navBtn' onClick={this.logout}>Log Out</div>
+        </nav>
+        <nav id='patronNav' className='navBar' style={{display:'none'}}>
+          <div className='currentUserName' id='currentPatronName'>
+          </div>
+          <div id='logoutButton' className='navBtn' onClick={this.logout}>Log Out</div>
         </nav>
         <div id='createDiv' style={{display: 'none'}}>
           <NewRestaurantForm createRestaurant={this.createRestaurant}></NewRestaurantForm>
