@@ -4,11 +4,12 @@ class RestaurantFeed extends React.Component {
     password: "",
     about: ""
   }
-  checkRequired = (userName, password, about) => {
+  checkRequired = (userName, password, about, event) => {
+    let thisForm = event.target.parentElement
       if (userName && password && about) {
-        document.querySelector('#submitEdit').style.display = 'block'
+        thisForm.lastChild.style.display = 'block'
       } else {
-        document.querySelector('#submitEdit').style.display = 'none'
+        thisForm.lastChild.style.display = 'none'
       }
     }
   changeState = (event) => {
@@ -39,7 +40,7 @@ class RestaurantFeed extends React.Component {
           thisForm.querySelector('#about').previousSibling.style.display = 'none'
           about = true
         }
-    this.checkRequired(userName, password, about)
+    this.checkRequired(userName, password, about, event)
   }
   toggleEdit = (event) => {
     if(event.target.nextSibling.style.display === 'none') {
@@ -93,7 +94,7 @@ class RestaurantFeed extends React.Component {
                       <label htmlFor="about">About</label>
                       <h6>This field is required</h6>
                       <input type="text" id="about" onChange={this.changeState} defaultValue={restaurant.about}/>
-                      <input type="submit" id="submitEdit" value="Edit Restaurant Profile" style={{display: 'none'}}/>
+                      <input type="submit" id="submitEdit" value="Edit Restaurant Profile" style={{display: 'block'}}/>
                     </form>
                   </div>
                 </li>
