@@ -73,6 +73,7 @@ class LoginForm extends React.Component {
                 <label htmlFor="patronType"><b>Patron Account</b></label>
               </div>
 
+              <h6>{this.props.error}</h6>
               <input className="myButtonLogin" type="submit" id="submitLogin" value="Login" style={{display: 'none'}}/>
               <input className="myButtonCancel" type="submit" id="submitLogin" value="Cancel"/>
 

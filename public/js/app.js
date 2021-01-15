@@ -96,6 +96,27 @@ class Gatekeeper extends React.Component {
       }
     })
   }
+  loginUser = (data) => {
+    event.preventDefault()
+    axios.post('/user_sessions/', data).then(response => {
+      console.log(response.data);
+      if((typeof response.data) === 'string') {
+        this.setState({
+          sessions: {
+            error: response.data
+          }
+        })
+      } else {
+        response.data.password= ''
+        this.setState({
+          sessions:{
+            currentRestaurant: response.data,
+            error: ""
+          }
+        })
+      }
+    })
+  }
   render = () => {
     return (
       <div id='appContainer'>
@@ -111,7 +132,7 @@ class Gatekeeper extends React.Component {
           <NewUserForm createUser={this.createUser}></NewUserForm>
         </div>
         <div id='loginDiv' style={{display: 'none'}}>
-          <LoginForm login={this.login} error={this.state.sessions.error}></LoginForm>
+          <LoginForm login={this.login} loginUser={this.loginUser} error={this.state.sessions.error}></LoginForm>
         </div>
         <div id='feedApp'>
           <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant}></RestaurantFeed>
