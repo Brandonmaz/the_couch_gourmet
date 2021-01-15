@@ -1,34 +1,19 @@
 class RestaurantFeed extends React.Component {
-  state = {
-    restaurants: []
-  }
-  componentDidMount = () => {
-    axios.get('/restaurant/').then(response => {
-      this.setState({
-        restaurants: response.data
-      })
-    })
-  }
-
   render = () => {
     return (
       <div>
-      {this.state.restaurants.map((restaurant) => {
-        return(
-          <ul>
-            <li>{restaurant.username}</li>
-            <li>{restaurant.about}</li>
-            <img src={restaurant.password} alt={restaurant.name}/>
-          </ul>
-        )
-      })}
+        <ul>
+          {this.props.restaurants.map((restaurant) => {
+            return(
+                <li>
+                  <h4>{restaurant.username}</h4>
+                  <h5>{restaurant.about}</h5>
+                  <img src={restaurant.password} alt={restaurant.name}/>
+                  <div className='editDiv'></div>
+                </li>
+              )})}
+        </ul>
       </div>
-    )
+     )
   }
 }
-
-
-
-ReactDOM.render(
-  <RestaurantFeed></RestaurantFeed>, document.querySelector('#feedApp')
-)
