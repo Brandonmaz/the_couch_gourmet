@@ -1,6 +1,7 @@
 class Gatekeeper extends React.Component {
   state = {
-    restaurants: []
+    restaurants: [],
+    currentUser: {}
   }
   componentDidMount = () => {
     axios.get('/restaurant/').then(response => {
