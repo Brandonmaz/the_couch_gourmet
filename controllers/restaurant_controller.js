@@ -30,12 +30,15 @@ restaurant.put('/:id', (req, res) => {
     req.params.id,
     req.body,
     {new: true},
-    (error, updateRestaurant) => {
+    (error, updatedRestaurant) => {
       if(error){
         res.send(error)
       } else {
-        Restaurant.find({}, (error, foundRestaurant) => {
-          res.json(foundRestaurant)
+        updatedRestaurant.password = (bcrypt.hashSync(updatedRestaurant.password, bcrypt.genSaltSync(10)))
+        updatedRestaurant.save((err, data) => {
+          Restaurant.find({}, (error, foundRestaurant) => {
+            res.json([foundRestaurant, updatedRestaurant])
+          })
         })
       }
     }
@@ -48,7 +51,5 @@ restaurant.delete('/:id', (req, res) => {
     })
   })
 })
-restaurant.get('/', (req, res) => {
-  res.send('index')
-})
+
 module.exports = restaurant

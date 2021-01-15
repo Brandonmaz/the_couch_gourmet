@@ -35,9 +35,12 @@ user.put('/:id', (req, res) => {
       if(error){
         res.send(error)
       } else {
-        User.find({}, (error, foundUser) => {
-          res.json(foundUser)
+        updateUser.password = (bcrypt.hashSync(updateUser.password, bcrypt.genSaltSync(10)))
+        updateUser.save((err, data) => {
+        Restaurant.find({}, (error, foundRestaurant) => {
+          res.json([foundRestaurant, updateUser])
         })
+      })
       }
     }
   )
