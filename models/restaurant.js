@@ -12,14 +12,7 @@ const restaurantSchema = new Schema ({
                             } else {
                               return true
                             }}, message: 'Your name must be between 5 and 16 characters long.'}},
-  password:{type:String, required:true, validate: {
-                          validator: (str) => {
-                            let length = str.length
-                            if(length < 7 || length > 16) {
-                              return false
-                            } else {
-                              return true
-                            }}, message: 'Your password must be between 7 and 16 characters.'}},
+  password:{type:String, required:true},
   about:{type:String, required:true}
 })
 

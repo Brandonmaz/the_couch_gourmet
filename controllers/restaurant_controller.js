@@ -1,4 +1,5 @@
 const express = require('express')
+const bcrypt = require('bcrypt')
 const restaurant = express.Router()
 
 const Restaurant = require('../models/restaurant.js')
@@ -8,13 +9,20 @@ restaurant.get('/', (req, res) => {
     res.json(foundRestaurant)
   })
 })
+
 restaurant.post('/', (req, res) => {
-  Restaurant.create(req.body, (error, createRestaurant) => {
+  Restaurant.create(req.body, (error, createdRestaurant) => {
     if(error) {
       console.log(error);
     } else {
-      Restaurant.find({}, (error, foundRestaurant) => {
-        res.json(foundRestaurant)
+      console.log(createdRestaurant.password, req.body.password);
+      createdRestaurant.password = (bcrypt.hashSync(createdRestaurant.password, bcrypt.genSaltSync(10)))
+      console.log(createdRestaurant.password);
+      createdRestaurant.save((err, data) =>{
+        if(err){console.log(err);}
+        Restaurant.find({}, (error, foundRestaurant) => {
+          res.json(foundRestaurant)
+        })
       })
     }
   })
