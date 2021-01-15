@@ -50,12 +50,10 @@ class NewRestaurantForm extends React.Component {
   render = () => {
     return (
       <div className="mainContainer">
-
           <form onSubmit={this.submitForm} id='newRestForm'>
             <div className="container">
               <h1>Register</h1>
-              <p>Please fill in this form to create an account.</p>
-              <hr/>
+              <p id="topP">Please fill in this form to create an account.</p>
 
               <label htmlFor="name"><b>Name</b></label>
               <h6>This field is required and must be between 5 and 16 characters.</h6>
@@ -68,8 +66,8 @@ class NewRestaurantForm extends React.Component {
               <label htmlFor="about"><b>About</b></label>
               <h6>This field is required</h6>
               <input type="text" placeholder="Enter About" id="about" onChange={this.changeState}/>
-              <hr/>
-              <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+              <p id="bottomP">By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
               <input className="myButton" type="submit" id="submitRest" value="Create Restaurant Profile" style={{display: 'none'}}/>
             </div>
