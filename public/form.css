@@ -17,7 +17,7 @@ h6 {
 }
 .container {
   padding: 16px;
-  background-color: darkgrey;
+  background-color: lightgrey;
   width: 50%;
   margin: 0 auto;
   filter: drop-shadow(0 0 5px #d83526);
