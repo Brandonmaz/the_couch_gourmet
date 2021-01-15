@@ -2,7 +2,15 @@ class Gatekeeper extends React.Component {
   state = {
     restaurants: [],
     sessions:{
-      currentRestaurant: {},
+      currentRestaurant: {
+        username: "",
+        about: ""
+      },
+      currentUser: {
+        username: "",
+        about: "",
+        favorites: ""
+      },
       error: ""
     }
   }
@@ -60,11 +68,39 @@ class Gatekeeper extends React.Component {
       this.showNewUser()
     })
   }
+  editUser = (id, data) => {
+    event.preventDefault()
+    axios.put('/user/' + id, data).then(response => {
+      console.log(response);
+      this.setState({
+        restaurants: response.data[0],
+        sessions:{
+          currentUser: response.data[1],
+          currentRestaurant: {
+            username: "",
+            about: "",
+            favorites: ""
+          },
+          error: ""
+        }
+      })
+    })
+  }
   editRestaurant = (data, id) => {
     event.preventDefault()
     axios.put('/restaurant/' + id, data).then(response => {
+      console.log(response);
       this.setState({
-        restaurants: response.data
+        restaurants: response.data[0],
+        sessions:{
+          currentRestaurant: response.data[1],
+          currentUser: {
+            username: "",
+            about: "",
+            favorites: ""
+          },
+          error: ""
+        }
       })
     })
   }
@@ -75,13 +111,42 @@ class Gatekeeper extends React.Component {
       })
     })
   }
+  changeNav = (string) => {
+    document.querySelector('#loggedOutNav').style.display = 'none'
+    if(string === 'user') {
+      document.querySelector('#currentPatronName').innerHTML = this.state.sessions.currentUser.username
+      document.querySelector('#patronNav').style.display = 'block'
+    } else {
+      document.querySelector('#currentRestaurantName').innerHTML = this.state.sessions.currentRestaurant.username
+      document.querySelector('#restaurantNav').style.display = 'block'
+    }
+  }
+  resetNav = () => {
+    document.querySelector('#currentPatronName').innerHTML = ''
+    document.querySelector('#patronNav').style.display = 'none'
+    document.querySelector('#currentRestaurantName').innerHTML = ''
+    document.querySelector('#restaurantNav').style.display = 'none'
+    document.querySelector('#loggedOutNav').style.display = 'block'
+    document.querySelector('#userProfile').style.display = 'none'
+    document.querySelector('#restaurantProfile').style.display = 'none'
+    document.querySelector('#feedApp').style.display = 'block'
+  }
   login = (data) => {
     event.preventDefault()
     axios.post('/sessions/', data).then(response => {
       console.log(response.data);
       if((typeof response.data) === 'string') {
         this.setState({
-          sessions: {
+          sessions:{
+            currentRestaurant: {
+              username: "",
+              about: ""
+            },
+            currentUser: {
+              username: "",
+              about: "",
+              favorites: ""
+            },
             error: response.data
           }
         })
@@ -90,19 +155,106 @@ class Gatekeeper extends React.Component {
         this.setState({
           sessions:{
             currentRestaurant: response.data,
+            currentUser: {
+              username: "",
+              about: "",
+              favorites: ""
+            },
             error: ""
           }
         })
+        document.querySelector('#loginForm').reset()
+        document.querySelector('#loginDiv').style.display = 'none'
+        this.changeNav('restaurant')
       }
     })
+  }
+  loginUser = (data) => {
+    event.preventDefault()
+    axios.post('/user_sessions/', data).then(response => {
+      console.log(response.data);
+      if((typeof response.data) === 'string') {
+        this.setState({
+          sessions:{
+            currentRestaurant: {
+              username: "",
+              about: ""
+            },
+            currentUser: {
+              username: "",
+              about: "",
+              favorites: ""
+            },
+            error: response.data
+          }
+        })
+      } else {
+        response.data.password= ''
+        this.setState({
+          sessions:{
+            currentUser: response.data,
+            currentRestaurant: {
+              username: "",
+              about: ""
+            },
+            error: ""
+          }
+        })
+        document.querySelector('#loginForm').reset()
+        document.querySelector('#loginDiv').style.display = 'none'
+        this.changeNav('user')
+      }
+    })
+  }
+  logout = () => {
+    this.setState({
+        sessions:{
+          currentRestaurant: {
+            username: "",
+            about: ""
+          },
+          currentUser: {
+            username: "",
+            about: "",
+            favorites: ""
+          },
+          error: ""
+        }
+    })
+    this.resetNav()
+  }
+  viewMyRestaurantProfile = () => {
+    document.querySelector('#restaurantProfile').style.display = 'block'
+    document.querySelector('#feedApp').style.display = 'none'
+  }
+  viewMyPatronProfile = () => {
+    document.querySelector('#userProfile').style.display = 'block'
+    document.querySelector('#feedApp').style.display = 'none'
+  }
+  showFeed = () => {
+    document.querySelector('#userProfile').style.display = 'none'
+    document.querySelector('#restaurantProfile').style.display = 'none'
+    document.querySelector('#feedApp').style.display = 'block'
   }
   render = () => {
     return (
       <div id='appContainer'>
-        <nav id='topNav'>
+        <nav id='loggedOutNav' className='navBar'>
           <div id='createShowButton' className='navBtn' onClick={this.showForm}>Create a Restaurant Profile</div>
           <div id='createUserButton' className='navBtn' onClick={this.showNewUser}>Create a Patron Profile</div>
           <div id='loginShowButton' className='navBtn' onClick={this.showLogin}>Login</div>
+        </nav>
+        <nav id='restaurantNav' className='navBar' style={{display:'none'}}>
+          <div className='navBtn' onClick={this.showFeed}>Feed</div>
+          <div className='navBtn' id='currentRestaurantName' onClick={this.viewMyRestaurantProfile}>
+          </div>
+          <div id='logoutButton' className='navBtn' onClick={this.logout}>Log Out</div>
+        </nav>
+        <nav id='patronNav' className='navBar' style={{display:'none'}}>
+          <div className='navBtn' onClick={this.showFeed}>Feed</div>
+          <div className='navBtn' id='currentPatronName' onClick={this.viewMyPatronProfile}>
+          </div>
+          <div id='logoutButton' className='navBtn' onClick={this.logout}>Log Out</div>
         </nav>
         <div id='createDiv' style={{display: 'none'}}>
           <NewRestaurantForm createRestaurant={this.createRestaurant}></NewRestaurantForm>
@@ -111,10 +263,16 @@ class Gatekeeper extends React.Component {
           <NewUserForm createUser={this.createUser}></NewUserForm>
         </div>
         <div id='loginDiv' style={{display: 'none'}}>
-          <LoginForm login={this.login} error={this.state.sessions.error}></LoginForm>
+          <LoginForm login={this.login} loginUser={this.loginUser} error={this.state.sessions.error}></LoginForm>
         </div>
         <div id='feedApp'>
           <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant}></RestaurantFeed>
+        </div>
+        <div id='userProfile' style={{display: 'none'}}>
+          <UserProfile editUser={this.editUser} sessions={this.state.sessions}></UserProfile>
+        </div>
+        <div id='restaurantProfile' style={{display: 'none'}}>
+          <RestaurantProfile editRestaurant={this.editRestaurant} sessions={this.state.sessions}></RestaurantProfile>
         </div>
       </div>
     )

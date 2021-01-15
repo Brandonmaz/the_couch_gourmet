@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt')
 const express = require('express')
 const user_sessions = express.Router()
-const User = require('../models/restaurant.js')
+const User = require('../models/user.js')
 
 user_sessions.post('/', (req, res) => {
   console.log(req.body.username);

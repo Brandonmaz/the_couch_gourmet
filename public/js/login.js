@@ -36,17 +36,14 @@ class LoginForm extends React.Component {
       document.querySelector('#restaurantType').checked = false
     }
     event.target.checked = true
-    if(document.querySelector('#restaurantType').checked === true) {
-      document.querySelector('#loginForm').setAttribute('onSubmit', this.submitUser)
-    } else {
-      document.querySelector('#loginForm').setAttribute('onSubmit', this.submitForm)
-    }
   }
   submitForm = () => {
-    this.props.login(this.state)
-  }
-  submitUser = () => {
-    this.props.loginUser(this.state)
+    if(document.querySelector('#restaurantType').checked === true) {
+      this.props.login(this.state)
+    } else {
+      this.props.loginUser(this.state)
+    }
+
   }
   render = () => {
     return (
@@ -78,12 +75,14 @@ class LoginForm extends React.Component {
                   <input type="radio" id="patronType" onChange={this.changeSubmit} className='loginSwitch'/>
                   <label htmlFor="patronType"><b>Patron Account</b></label>
                 </div>
-
+                
+                <h6>{this.props.error}</h6>
                 <input className="myButtonLogin" type="submit" id="submitLogin" value="Login" style={{display: 'none'}}/>
                 <input className="myButtonCancel" type="submit" id="submitLogin" value="Cancel"/>
 
                 <span className="psw">Forgot <a href="#">password?</a></span>
               </div>
+
 
             </form>
             </div>
