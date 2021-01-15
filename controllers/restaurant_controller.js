@@ -21,7 +21,7 @@ restaurant.post('/', (req, res) => {
 })
 restaurant.put('/:id', (req, res) => {
   Restaurant.findByIdAndUpdate(
-    rew.params.id,
+    req.params.id,
     req.body,
     {new: true},
     (error, updateRestaurant) => {
