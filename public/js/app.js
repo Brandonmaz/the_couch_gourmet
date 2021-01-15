@@ -18,6 +18,7 @@ class Gatekeeper extends React.Component {
       document.querySelector('#createDiv').style.display = 'none'
     } else {
       document.querySelector('#createDiv').style.display = 'block'
+      document.querySelector('#newUserDiv').style.display = 'none'
       document.querySelector('#loginDiv').style.display = 'none'
     }
   }
@@ -26,6 +27,17 @@ class Gatekeeper extends React.Component {
       document.querySelector('#loginDiv').style.display = 'none'
     } else {
       document.querySelector('#loginDiv').style.display = 'block'
+      document.querySelector('#newUserDiv').style.display = 'none'
+      document.querySelector('#createDiv').style.display = 'none'
+    }
+  }
+  showNewUser = () => {
+    if(document.querySelector('#newUserDiv').style.display === 'block') {
+      document.querySelector('#newUserDiv').style.display = 'none'
+    } else {
+      document.querySelector('#newUserDiv').style.display = 'block'
+      document.querySelector('#createDiv').style.display = 'none'
+      document.querySelector('#loginDiv').style.display = 'none'
     }
   }
   createRestaurant = (data) => {
@@ -36,6 +48,16 @@ class Gatekeeper extends React.Component {
       })
       document.querySelector('#newRestForm').reset()
       this.showForm()
+    })
+  }
+  createUser = (data) => {
+    event.preventDefault()
+    axios.post('/user/', data).then(response => {
+      this.setState({
+        restaurants: response.data
+      })
+      document.querySelector('#newUserForm').reset()
+      this.showNewUser()
     })
   }
   editRestaurant = (data, id) => {
@@ -79,10 +101,14 @@ class Gatekeeper extends React.Component {
       <div id='appContainer'>
         <nav id='topNav'>
           <div id='createShowButton' className='navBtn' onClick={this.showForm}>Create a Restaurant Profile</div>
+          <div id='createUserButton' className='navBtn' onClick={this.showNewUser}>Create a Patron Profile</div>
           <div id='loginShowButton' className='navBtn' onClick={this.showLogin}>Login</div>
         </nav>
         <div id='createDiv' style={{display: 'none'}}>
           <NewRestaurantForm createRestaurant={this.createRestaurant}></NewRestaurantForm>
+        </div>
+        <div id='newUserDiv' style={{display: 'none'}}>
+          <NewUserForm createUser={this.createUser}></NewUserForm>
         </div>
         <div id='loginDiv' style={{display: 'none'}}>
           <LoginForm login={this.login} error={this.state.sessions.error}></LoginForm>

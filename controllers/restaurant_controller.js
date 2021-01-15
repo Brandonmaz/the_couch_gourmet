@@ -15,9 +15,7 @@ restaurant.post('/', (req, res) => {
     if(error) {
       console.log(error);
     } else {
-      console.log(createdRestaurant.password, req.body.password);
       createdRestaurant.password = (bcrypt.hashSync(createdRestaurant.password, bcrypt.genSaltSync(10)))
-      console.log(createdRestaurant.password);
       createdRestaurant.save((err, data) =>{
         if(err){console.log(err);}
         Restaurant.find({}, (error, foundRestaurant) => {
