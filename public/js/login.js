@@ -62,7 +62,7 @@ class LoginForm extends React.Component {
 
               <p>Are you logging into a Patron or a Restaurant Account?</p>
               <div>
-                <input type="radio" id="restaurantType" onClick={this.changeSubmit}  className='loginSwitch' checked/>
+                <input type="radio" id="restaurantType" onClick={this.changeSubmit}  className='loginSwitch' defaultChecked/>
                 <label htmlFor="resaurantType"><b>Restaurant Account</b></label>
               </div>
               <div>
