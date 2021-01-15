@@ -1,20 +1,78 @@
 .sign-form {
   padding: 16px;
   background-color: lightgrey;
-  width: 50%;
+
   margin: 0 auto;
   filter: drop-shadow(0 0 5px #d83526);
+}
+.sign-container {
+  padding: 16px;
 }
 .imgContainer {
   text-align: center;
   margin: 24px 0 12px 0;
 }
+.loginContainer {
+  width: 60vw;
+}
+/* =============login animation=========*/
+.login {
+  position: relative;
+  width: 60vw;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.login:hover > .login-header, .login.focused > .login-header {
+  width: 0;
+}
+.login:hover > .login-header > .text, .login.focused > .login-header > .text {
+  font-size: 1rem;
+  transform: rotate(-90deg);
+}
+
+/*==============animated header========*/
+.login-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  margin: 18px;
+  width: 100%;
+  height: 100%;
+  background: orange;
+  transition: width 0.5s ease-in-out;
+}
+.login-header > .text {
+
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 4rem;
+  text-align: center;
+  line-height: 40rem;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+@keyframes loading {
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 img.avatar {
   width: 40%;
   border-radius: 50%
 }
-
-
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
 .myButtonLogin {
 	box-shadow:inset 0px 1px 0px 0px #00d286;
 	background:linear-gradient(to bottom, #00a86b 5%, #008b51 100%);
@@ -54,6 +112,7 @@ img.avatar {
 	padding:6px 24px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #940008;
+  width: auto;
 }
 .myButtonCancel:hover {
 	background:linear-gradient(to bottom, #cc0000 5%, #e71837 100%);
@@ -62,4 +121,14 @@ img.avatar {
 .myButtonCancel:active {
 	position:relative;
 	top:1px;
+}
+
+@media screen and (max-width: 1030px){
+  span.psw{
+    display: block;
+    float: none;
+  }
+  .myButtonCancel {
+    width: 100%;
+  }
 }
