@@ -3,6 +3,7 @@ class Gatekeeper extends React.Component {
     restaurants: [],
     sessions:{
       currentRestaurant: {},
+      currentUser: {},
       error: ""
     }
   }
@@ -110,7 +111,7 @@ class Gatekeeper extends React.Component {
         response.data.password= ''
         this.setState({
           sessions:{
-            currentRestaurant: response.data,
+            currentUser: response.data,
             error: ""
           }
         })
