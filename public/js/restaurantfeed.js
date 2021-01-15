@@ -70,6 +70,9 @@ class RestaurantFeed extends React.Component {
       about: ""
     })
   }
+  deletePost = (event) => {
+    this.props.deleteRestaurant(event.target.getAttribute('_id'))
+  }
   render = () => {
     return (
       <div>
@@ -80,6 +83,7 @@ class RestaurantFeed extends React.Component {
                   <h4>{restaurant.username}</h4>
                   <h5>{restaurant.about}</h5>
                   <img src={restaurant.password} alt={restaurant.name}/>
+                  <button id='deleteButton' onClick={this.deletePost} _id={restaurant._id}>Delete Restaurant Profile</button>
                   <button id='editButton' onClick={this.toggleEdit}>Edit This Restaurant</button>
                   <div className='editDiv' style={{display: 'none'}}>
                     <form onSubmit={this.submitForm} id='editRestForm' _id={restaurant._id}>
