@@ -45,21 +45,34 @@ class NewRestaurantForm extends React.Component {
   }
   render = () => {
     return (
-      <div>
-        <h1>New Restaurant Works</h1>
+      <div className="mainContainer">
+
           <form onSubmit={this.submitForm} id='newRestForm'>
-            <label htmlFor="name">Name</label>
-            <h6>This field is required and must be between 5 and 16 characters.</h6>
-            <input type="text" id="name" onChange={this.changeState}/>
-            <br/>
-            <label htmlFor="password">Password</label>
-            <h6>This field is required and must be between 7 and 16 characters.</h6>
-            <input type="text" id="password" onChange={this.changeState}/>
-            <br/>
-            <label htmlFor="about">About</label>
-            <h6>This field is required</h6>
-            <input type="text" id="about" onChange={this.changeState}/>
-            <input type="submit" id="submitRest" value="Create Restaurant Profile" style={{display: 'none'}}/>
+            <div className="container">
+              <h1>Register</h1>
+              <p>Please fill in this form to create an account.</p>
+              <hr/>
+
+              <label htmlFor="name"><b>Name</b></label>
+              <h6>This field is required and must be between 5 and 16 characters.</h6>
+              <input type="text" placeholder="Enter Name" id="name" onChange={this.changeState}/>
+
+              <label htmlFor="password"><b>Password</b></label>
+              <h6>This field is required and must be between 7 and 16 characters.</h6>
+              <input type="text" placeholder="Enter Password" id="password" onChange={this.changeState}/>
+
+              <label htmlFor="about"><b>About</b></label>
+              <h6>This field is required</h6>
+              <input type="text" placeholder="Enter About" id="about" onChange={this.changeState}/>
+              <hr/>
+              <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+              <input className="myButton" type="submit" id="submitRest" value="Create Restaurant Profile" style={{display: 'none'}}/>
+            </div>
+
+            <div className="container signin">
+              <p>Already have an account? <a href="#">Sign in</a>.</p>
+            </div>
           </form>
       </div>
     )
