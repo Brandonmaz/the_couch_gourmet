@@ -35,16 +35,24 @@ class LoginForm extends React.Component {
   render = () => {
     return (
       <div id='loginDiv'>
-          <form onSubmit={this.submitForm} id='loginForm'>
-            <label htmlFor="loginname">Username</label>
-            <input type="text" id="loginname" onChange={this.changeState}/>
-            <br/>
-            <label htmlFor="loginpassword">Password</label>
-            <input type="password" id="loginpassword" onChange={this.changeState}/>
-            <br/>
-            <div id='enterLoginNotice'>Please Enter a Username and Password</div>
-            <input type="submit" id="submitLogin" value="Login" style={{display: 'none'}}/>
-          </form>
+      <div id='enterLoginNotice'><h2>Login Form</h2></div>
+        <form onSubmit={this.submitForm} className="sign-form" id='loginForm'>
+        <div className="imgContainer">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9dsmG0mf7G_IbvdSFt7UkWhDwnOsBjtbEmQ&usqp=CAU" className="avatar"/>
+        </div>
+            <div className="sign-container">
+              <label htmlFor="loginname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" id="loginname" onChange={this.changeState}/>
+
+              <label htmlFor="loginpassword"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" id="loginpassword" onChange={this.changeState}/>
+
+              <input className="myButtonLogin" type="submit" id="submitLogin" value="Login" style={{display: 'none'}}/>
+              <input className="myButtonCancel" type="submit" id="submitLogin" value="Cancel"/>
+
+              <span className="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
       </div>
     )
   }

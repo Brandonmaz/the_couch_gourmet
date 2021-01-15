@@ -1,0 +1,65 @@
+.sign-form {
+  padding: 16px;
+  background-color: lightgrey;
+  width: 50%;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 5px #d83526);
+}
+.imgContainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+img.avatar {
+  width: 40%;
+  border-radius: 50%
+}
+
+
+.myButtonLogin {
+	box-shadow:inset 0px 1px 0px 0px #00d286;
+	background:linear-gradient(to bottom, #00a86b 5%, #008b51 100%);
+	background-color:#00a86b;
+	border-radius:6px;
+	border:1px solid #00a86b;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #186d47;
+}
+.myButtonLogin:hover {
+	background:linear-gradient(to bottom, #008b51 5%, #00a86b 100%);
+	background-color:#008b51;
+}
+.myButtonLogin:active {
+	position:relative;
+	top:1px;
+}
+.myButtonCancel {
+	box-shadow:inset 0px 1px 0px 0px #00d286;
+	background:linear-gradient(to bottom, #e71837 5%, #cc0000 100%);
+	background-color:#e71837;
+	border-radius:6px;
+	border:1px solid #e71837;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #940008;
+}
+.myButtonCancel:hover {
+	background:linear-gradient(to bottom, #cc0000 5%, #e71837 100%);
+	background-color:#cc0000;
+}
+.myButtonCancel:active {
+	position:relative;
+	top:1px;
+}
