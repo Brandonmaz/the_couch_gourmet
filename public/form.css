@@ -20,8 +20,21 @@ h6 {
   background-color: lightgrey;
   width: 50%;
   margin: 0 auto;
-  filter: drop-shadow(0 0 5px #d83526);
+  /* filter: drop-shadow(0 0 5px #d83526); */
+  /* box-shadow: 10px 20px 30px blue; */
+  animation: form 5s infinite;
+
 }
+@keyframes form {
+  0%   {filter: drop-shadow(0 0 5px red);}
+  17%  {filter: drop-shadow(0 0 5px orange);}
+  34%  {filter: drop-shadow(0 0 5px yellow);}
+  51%  {filter: drop-shadow(0 0 5px green);}
+  68%  {filter: drop-shadow(0 0 5px blue);}
+  84%  {filter: drop-shadow(0 0 5px indigo);}
+  100%  {filter: drop-shadow(0 0 5px violet);}
+}
+
 input {
   width: 100%;
   padding: 15px;
