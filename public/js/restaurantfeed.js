@@ -85,22 +85,24 @@ class RestaurantFeed extends React.Component {
                   <img src={restaurant.password} alt={restaurant.name}/>
                   <button id='deleteButton' onClick={this.deletePost} _id={restaurant._id}>Delete Restaurant Profile</button>
                   <button id='editButton' onClick={this.toggleEdit}>Edit This Restaurant</button>
-                  <div className='editDiv' style={{display: 'none'}}>
+                  <div className='editDiv container' style={{display: 'none'}}>
                     <form onSubmit={this.submitForm} id='editRestForm' _id={restaurant._id}>
-                      <label htmlFor="name">Name</label>
-                      <h6>This field is required and must be between 5 and 16 characters.</h6>
-                      <input type="text" id="name" onChange={this.changeState} defaultValue={restaurant.username}/>
-                      <br/>
-                      <label htmlFor="password">Password</label>
-                      <h6>This field is required and must be between 7 and 16 characters.</h6>
-                      <input type="text" id="password" onChange={this.changeState} defaultValue={restaurant.password}/>
-                      <br/>
-                      <label htmlFor="about">About</label>
-                      <h6>This field is required</h6>
-                      <input type="text" id="about" onChange={this.changeState} defaultValue={restaurant.about}/>
-                      <input type="submit" id="submitEdit" value="Edit Restaurant Profile" style={{display: 'block'}}/>
-                    </form>
-                  </div>
+
+                        <label htmlFor="name"><b>Name</b></label>
+                        <h6>This field is required and must be between 5 and 16 characters.</h6>
+                        <input type="text" id="name" placeholder="Enter Name" onChange={this.changeState} defaultValue={restaurant.username}/>
+                        <br/>
+                        <label htmlFor="password"><b>Password</b></label>
+                        <h6>This field is required and must be between 7 and 16 characters.</h6>
+                        <input type="text" id="password" placeholder="Enter Password" onChange={this.changeState} defaultValue={restaurant.password}/>
+                        <br/>
+                        <label htmlFor="about"><b>About</b></label>
+                        <h6>This field is required</h6>
+                        <input type="text" id="about" placeholder="Enter About" onChange={this.changeState} defaultValue={restaurant.about}/>
+
+                        <input className="myButton" type="submit" id="submitEdit" value="Edit Restaurant Profile" style={{display: 'block'}}/>
+                        </form>
+                    </div>
                 </li>
               )})}
         </ul>
