@@ -10,10 +10,18 @@ class Gatekeeper extends React.Component {
     })
   }
   showForm = () => {
-    if(document.querySelector('#testApp').style.display === 'block') {
-      document.querySelector('#testApp').style.display = 'none'
+    if(document.querySelector('#createDiv').style.display === 'block') {
+      document.querySelector('#createDiv').style.display = 'none'
     } else {
-      document.querySelector('#testApp').style.display = 'block'
+      document.querySelector('#createDiv').style.display = 'block'
+      document.querySelector('#loginDiv').style.display = 'none'
+    }
+  }
+  showLogin = () => {
+    if(document.querySelector('#loginDiv').style.display === 'block') {
+      document.querySelector('#loginDiv').style.display = 'none'
+    } else {
+      document.querySelector('#loginDiv').style.display = 'block'
     }
   }
   createRestaurant = (data) => {
@@ -44,12 +52,15 @@ class Gatekeeper extends React.Component {
   render = () => {
     return (
       <div id='appContainer'>
-        <nav id='createRestDiv'>
+        <nav id='topNav'>
           <div id='createShowButton' className='navBtn' onClick={this.showForm}>Create a Restaurant Profile</div>
-
+          <div id='loginShowButton' className='navBtn' onClick={this.showLogin}>Login</div>
         </nav>
-        <div id='testApp' style={{display: 'none'}}>
+        <div id='createDiv' style={{display: 'none'}}>
           <NewRestaurantForm createRestaurant={this.createRestaurant}></NewRestaurantForm>
+        </div>
+        <div id='loginDiv' style={{display: 'none'}}>
+          <LoginForm></LoginForm>
         </div>
         <div id='feedApp'>
           <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant}></RestaurantFeed>

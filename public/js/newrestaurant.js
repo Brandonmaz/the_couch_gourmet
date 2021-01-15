@@ -43,6 +43,10 @@ class NewRestaurantForm extends React.Component {
   submitForm = () => {
     this.props.createRestaurant(this.state)
   }
+  changeToLogin = () => {
+    document.querySelector('#createDiv').style.display = 'none'
+    document.querySelector('#loginDiv').style.display = 'block'
+  }
   render = () => {
     return (
       <div className="mainContainer">
@@ -71,7 +75,7 @@ class NewRestaurantForm extends React.Component {
             </div>
 
             <div className="container signin">
-              <p>Already have an account? <a href="#">Sign in</a>.</p>
+              <p>Already have an account? <a onClick={this.changeToLogin}>Sign in</a>.</p>
             </div>
           </form>
       </div>
