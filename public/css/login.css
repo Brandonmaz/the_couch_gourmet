@@ -1,0 +1,196 @@
+.sign-form {
+  padding: 16px;
+  background-color: lightgrey;
+  margin: 0 auto;
+  width: 68vw;
+  height: 100%;
+  width: 50%;
+  border-radius: 5px;
+  animation: sign-form 5s infinite;
+}
+@keyframes sign-form {
+  0%   {filter: drop-shadow(0 0 5px red);}
+  17%  {filter: drop-shadow(0 0 5px orange);}
+  34%  {filter: drop-shadow(0 0 5px yellow);}
+  51%  {filter: drop-shadow(0 0 5px green);}
+  68%  {filter: drop-shadow(0 0 5px blue);}
+  84%  {filter: drop-shadow(0 0 5px indigo);}
+  100%  {filter: drop-shadow(0 0 5px violet);}
+
+}
+.sign-container {
+  padding: 16px;
+
+}
+.imgContainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+.loginContainer {
+  width: 60vw;
+}
+.restaurantH4 {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 0;
+}
+.patronH4 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* =============login animation and sign form position for .login=========*/
+.login {
+  position: relative;
+  width: 85%;
+  margin: 0 auto;
+  padding: 20px;
+  /* background: #fff; */
+  border-radius: 5px;
+  overflow: hidden;
+  margin-left: 10%;
+
+ height: 85%;
+}
+.login:hover > .login-header, .login.focused > .login-header {
+  width: 0;
+}
+.login:hover > .login-header > .text, .login.focused > .login-header > .text {
+  font-size: 0;
+  transform: rotate(-90deg);
+}
+
+/*==============animated header========*/
+.login-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  margin: 18px;
+  width: 50%;
+  height: 95%;
+  background: orange;
+  border-radius: 5px;
+  transition: width 0.5s ease-in-out;
+  margin-left: 25%;
+}
+.login-header > .text {
+
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 4rem;
+  text-align: center;
+  line-height: 40rem;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+@keyframes loading {
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%
+}
+/* span.psw {
+  float: right;
+  padding-top: 16px;
+} */
+span.psw{
+  display: block;
+  float: none;
+}
+.myButtonLogin {
+	box-shadow:inset 0px 1px 0px 0px #00d286;
+	background:linear-gradient(to bottom, #00a86b 5%, #008b51 100%);
+	background-color:#00a86b;
+	border-radius:6px;
+	border:1px solid #00a86b;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #186d47;
+
+}
+.myButtonLogin:hover {
+	background:linear-gradient(to bottom, #008b51 5%, #00a86b 100%);
+	background-color:#008b51;
+}
+.myButtonLogin:active {
+	position:relative;
+	top:1px;
+}
+.myButtonCancel {
+	box-shadow:inset 0px 1px 0px 0px #00d286;
+	background:linear-gradient(to bottom, #e71837 5%, #cc0000 100%);
+	background-color:#e71837;
+	border-radius:6px;
+	border:1px solid #e71837;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #940008;
+  width: auto;
+  text-align: center;
+  width: 100%;
+}
+.myButtonCancel:hover {
+	background:linear-gradient(to bottom, #cc0000 5%, #e71837 100%);
+	background-color:#cc0000;
+}
+.myButtonCancel:active {
+	position:relative;
+	top:1px;
+}
+/*============Phone===========*/
+@media (max-width: 400px){
+  .login-header {
+    width: 70vw;
+    height: 96%;
+  }
+  .sign-form {
+    width: 100%;
+    height: 100%;
+  }
+}
+/*========Tablet==============*/
+@media screen and (max-width: 900px) {
+  .login {
+    margin-left: 50px;
+    width: 80%;
+    height: 86%
+  }
+  span.psw{
+    display: block;
+    float: none;
+  }
+  .sign-form {
+    width: 100%;
+    height: 100%;
+  }
+  .login-header {
+    width: 100%;
+    height: 100%;
+  }
+  .login-header {
+    margin-left: 20px;
+    width: 94%;
+    height: 96%;
+  }
+}

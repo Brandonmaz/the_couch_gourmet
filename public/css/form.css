@@ -7,13 +7,34 @@ body {
 h6 {
   color: #d83526;
 }
+#topP {
+  border-bottom: 1.5px solid #f1f1f1;
+  padding: 15px;
+}
+#bottomP {
+  border-top: 1.5px solid #f1f1f1;
+  padding: 15px;
+}
 .container {
-  padding: 16px;
-  background-color: darkgrey;
+  padding: 20px;
+  background-color: lightgrey;
   width: 50%;
   margin: 0 auto;
-  filter: drop-shadow(0 0 5px #d83526);
+  margin-left: 30%;
+  animation: form 5s infinite;
+
 }
+@keyframes form {
+  0%   {filter: drop-shadow(0 0 8px red);}
+  17%  {filter: drop-shadow(0 0 8px orange);}
+  34%  {filter: drop-shadow(0 0 8px yellow);}
+  51%  {filter: drop-shadow(0 0 8px green);}
+  68%  {filter: drop-shadow(0 0 8px blue);}
+  84%  {filter: drop-shadow(0 0 8px indigo);}
+  100%  {filter: drop-shadow(0 0 8px violet);}
+
+}
+
 input {
   width: 100%;
   padding: 15px;
@@ -26,10 +47,10 @@ input:focus {
   background-color: #ddd;
   outline: none;
 }
-hr {
+/* hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
-}
+} */
 .myButton {
 	box-shadow:inset 0px 1px 0px 0px #f7c5c0;
 	background:linear-gradient(to bottom, #fc8d83 5%, #e4685d 100%);
@@ -60,4 +81,28 @@ a {
 .signin {
   background-color: #f1f1f1;
   text-align: center;
+}
+
+/*========Tablet==============*/
+@media screen and (max-width: 900px) {
+  #newUserForm {
+    margin-left: -150px;
+    margin-top: 20px;
+    width: 130vw;
+    height: 86%;
+  }
+  #newRestForm {
+    margin-left: -150px;
+    margin-top: 20px;
+    width: 130vw;
+    height: 86%;
+  }
+}
+/*============Phone===========*/
+@media (max-width: 400px){
+  #newUserForm, #newRestForm {
+    margin-left: -100px;
+    width: 130vw;
+    height: 86%;
+  }
 }

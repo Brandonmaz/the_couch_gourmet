@@ -1,106 +1,90 @@
 class RestaurantFeed extends React.Component {
-  state = {
-    username: "",
-    password: "",
-    about: ""
+  state= {
+    posts: []
   }
-  checkRequired = (userName, password, about, event) => {
-    let thisForm = event.target.parentElement
-      if (userName && password && about) {
-        thisForm.lastChild.style.display = 'block'
-      } else {
-        thisForm.lastChild.style.display = 'none'
-      }
-    }
-  changeState = (event) => {
-    let thisForm = event.target.parentElement
-    this.setState({
-      username: thisForm.querySelector('#name').value,
-      password: thisForm.querySelector('#password').value,
-      about: thisForm.querySelector('#about').value
-    })
-      let userName = false
-      let password = false
-      let about = false
-      if(thisForm.querySelector('#name').value.length < 5 || thisForm.querySelector('#name').value.length > 16) {
-          thisForm.querySelector('#name').previousSibling.style.display = 'block'
-        } else {
-          thisForm.querySelector('#name').previousSibling.style.display = 'none'
-          userName = true
-        }
-      if(thisForm.querySelector('#password').value.length < 7 || thisForm.querySelector('#password').value.length > 50) {
-          thisForm.querySelector('#password').previousSibling.style.display = 'block'
-        } else {
-          thisForm.querySelector('#password').previousSibling.style.display = 'none'
-          password = true
-        }
-      if(thisForm.querySelector('#about').value.length === 0) {
-          thisForm.querySelector('#about').previousSibling.style.display = 'block'
-        } else {
-          thisForm.querySelector('#about').previousSibling.style.display = 'none'
-          about = true
-        }
-    this.checkRequired(userName, password, about, event)
-  }
-  toggleEdit = (event) => {
-    if(event.target.nextSibling.style.display === 'none') {
-      let allRests = document.querySelectorAll('.editDiv')
-      for(let i = 0; i < allRests.length; i++) {
-        allRests[i].style.display = 'none'
-      }
-      event.target.nextSibling.style.display = 'block'
-      this.changeState(event)
-    } else {
-      event.target.nextSibling.firstChild.reset()
-      event.target.nextSibling.style.display = 'none'
-      this.setState({
-        username: "",
-        password: "",
-        about: ""
-      })
-    }
-  }
-  submitForm = (event) => {
-    this.props.editRestaurant(this.state, event.target.getAttribute('_id'))
+  createPost = (id, data) => {
+    event.preventDefault()
     event.target.reset()
-    event.target.style.display = 'none'
-    this.setState({
-      username: "",
-      password: "",
-      about: ""
-    })
+    event.target.style.display= "none"
+    this.props.createReview(id, data)
   }
-  deletePost = (event) => {
-    this.props.deleteRestaurant(event.target.getAttribute('_id'))
+  toggleReviews = (event) => {
+    let id = event.target.getAttribute('_id')
+    event.persist()
+    if(event.target.innerHTML === "Hide Reviews") {
+      event.target.nextSibling.style.display = 'none'
+      event.target.innerHTML = 'Reviews'
+      this.setState({
+        posts: []
+      })
+    } else {
+      let reviewLists = document.querySelectorAll('#reviewList')
+      for(let x = 0; x < reviewLists.length; x++) {
+        reviewLists[x].style.display = 'none'
+      }
+      let viewButtons = document.querySelectorAll('.viewReviews')
+      for(let z = 0; z < viewButtons.length; z++) {
+        viewButtons[z].innerHTML = 'Reviews'
+      }
+        event.target.nextSibling.style.display = 'block'
+        event.target.innerHTML = 'Hide Reviews'
+        axios.get('/post/' + id).then(response => {
+          this.setState({
+            posts: response.data
+          })
+        })
+    }
+
+  }
+  toggleAdd = (event) => {
+    event.persist()
+    if(event.target.innerHTML === "Cancel Post") {
+      event.target.nextSibling.style.display = 'none'
+      event.target.innerHTML = 'Post a Review'
+    } else {
+      let reviewDivs = document.querySelectorAll('#reviewFormDiv')
+      for(let x = 0; x < reviewDivs.length; x++) {
+        reviewDivs[x].style.display = 'none'
+      }
+      let reviewButtons = document.querySelectorAll('#addReview')
+      for(let z = 0; z < reviewButtons.length; z++) {
+        reviewButtons[z].innerHTML = 'Post a Review'
+      }
+        event.target.nextSibling.style.display = 'block'
+        event.target.innerHTML = 'Cancel Post'
+    }
   }
   render = () => {
     return (
-      <div>
+      <div className="feedContent">
         <ul>
           {this.props.restaurants.map((restaurant) => {
             return(
-                <li>
+                <li key={restaurant._id}>
                   <h4>{restaurant.username}</h4>
                   <h5>{restaurant.about}</h5>
                   <img src={restaurant.password} alt={restaurant.name}/>
-                  <button id='deleteButton' onClick={this.deletePost} _id={restaurant._id}>Delete Restaurant Profile</button>
-                  <button id='editButton' onClick={this.toggleEdit}>Edit This Restaurant</button>
-                  <div className='editDiv' style={{display: 'none'}}>
-                    <form onSubmit={this.submitForm} id='editRestForm' _id={restaurant._id}>
-                      <label htmlFor="name">Name</label>
-                      <h6>This field is required and must be between 5 and 16 characters.</h6>
-                      <input type="text" id="name" onChange={this.changeState} defaultValue={restaurant.username}/>
-                      <br/>
-                      <label htmlFor="password">Password</label>
-                      <h6>This field is required and must be between 7 and 16 characters.</h6>
-                      <input type="text" id="password" onChange={this.changeState} defaultValue={restaurant.password}/>
-                      <br/>
-                      <label htmlFor="about">About</label>
-                      <h6>This field is required</h6>
-                      <input type="text" id="about" onChange={this.changeState} defaultValue={restaurant.about}/>
-                      <input type="submit" id="submitEdit" value="Edit Restaurant Profile" style={{display: 'block'}}/>
-                    </form>
-                  </div>
+                  <button className='viewReviews' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
+                  <ul id="reviewList" style={{display:'none'}}>
+                    {restaurant.posts.map((post) => {
+                      return(
+                        <li key={post._id}>
+                          <h4>{post.title}</h4>
+                          <h4>{post.stars} Stars</h4>
+                          <h6>By: {post.author}</h6>
+                          <h5>{post.body}</h5>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                  {(this.props.sessions.currentUser._id !== "") ?
+                    <div id='allowPostsDiv'>
+                        <button id='addReview' _id={restaurant._id} onClick={this.toggleAdd}>Post a Review</button>
+                        <div id='reviewFormDiv' style={{display: 'none'}}>
+                         <NewPostForm sessions={this.props.sessions} restaurantName={restaurant.username} restaurantId={restaurant._id} createPost={this.createPost}></NewPostForm>
+                         </div>
+                     </div>
+                     : null}
                 </li>
               )})}
         </ul>

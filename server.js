@@ -12,6 +12,19 @@ app.use(express.static('public'))
 const restaurantController = require('./controllers/restaurant_controller.js')
 app.use('/restaurant', restaurantController)
 
+const userController = require('./controllers/user_controller.js')
+app.use('/user', userController)
+
+const sessionsController = require('./controllers/sessions.js')
+app.use('/sessions', sessionsController)
+
+const user_sessionsController = require('./controllers/user_sessions.js')
+app.use('/user_sessions', user_sessionsController)
+
+const postController = require('./controllers/post_controller.js')
+app.use('/post', postController)
+
+
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
