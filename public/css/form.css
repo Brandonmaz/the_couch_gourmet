@@ -15,6 +15,10 @@ h6 {
   border-top: 1.5px solid #f1f1f1;
   padding: 15px;
 }
+.mainContainer {
+  margin-top: 40px;
+}
+
 .container {
   padding: 20px;
   background-color: lightgrey;
@@ -25,13 +29,13 @@ h6 {
 
 }
 @keyframes form {
-  0%   {filter: drop-shadow(0 0 8px red);}
-  17%  {filter: drop-shadow(0 0 8px orange);}
-  34%  {filter: drop-shadow(0 0 8px yellow);}
-  51%  {filter: drop-shadow(0 0 8px green);}
-  68%  {filter: drop-shadow(0 0 8px blue);}
-  84%  {filter: drop-shadow(0 0 8px indigo);}
-  100%  {filter: drop-shadow(0 0 8px violet);}
+  0%   {filter: drop-shadow(0 0 5px red);}
+  17%  {filter: drop-shadow(0 0 5px orange);}
+  34%  {filter: drop-shadow(0 0 5px yellow);}
+  51%  {filter: drop-shadow(0 0 5px green);}
+  68%  {filter: drop-shadow(0 0 5px blue);}
+  84%  {filter: drop-shadow(0 0 5px indigo);}
+  100%  {filter: drop-shadow(0 0 5px violet);}
 
 }
 
@@ -99,7 +103,7 @@ a {
   }
 }
 /*============Phone===========*/
-@media (max-width: 400px){
+@media screen and (max-width: 400px){
   #newUserForm, #newRestForm {
     margin-left: -100px;
     width: 130vw;
