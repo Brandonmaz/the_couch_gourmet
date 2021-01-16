@@ -249,6 +249,15 @@ class Gatekeeper extends React.Component {
     document.querySelector('#restaurantProfile').style.display = 'none'
     document.querySelector('#feedApp').style.display = 'block'
   }
+  createReview = (id, data) => {
+    axios.post('/post/' + id, data).then(response => {
+      this.setState({
+        restaurants: response.data
+      })
+    }
+    )
+  }
+
   render = () => {
     return (
       <div id='appContainer'>
@@ -287,7 +296,7 @@ class Gatekeeper extends React.Component {
         <div className='mainContent'>
 
         <div id='feedApp'>
-          <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant} sessions={this.state.sessions}></RestaurantFeed>
+          <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant} sessions={this.state.sessions} createReview={this.createReview}></RestaurantFeed>
         </div>
         <div id='userProfile' style={{display: 'none'}}>
           <UserProfile editUser={this.editUser} sessions={this.state.sessions}></UserProfile>
