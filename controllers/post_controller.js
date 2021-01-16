@@ -7,7 +7,6 @@ const Restaurant = require('../models/restaurant.js')
 post.get('/:id', (req, res) => {
   Restaurant.findById(req.params.id, (error, foundRestaurant) => {
     Post.find({}, (error, foundPosts) => {
-      console.log(foundPosts);
           res.json(foundPosts)
     })
   })
@@ -31,19 +30,35 @@ post.post('/:userid', (req, res) => {
 })
 post.put('/:userid/:postid', (req, res) => {
   Restaurant.findById(req.params.userid, (error, foundRestaurant) => {
-      Post.findByIdAndUpdate(
-        req.params.postid,
-        req.body,
-        {new: true},
-        (error, updatedPost) => {
-          if(error){
-            res.send(error)
-          } else {
-              res.json(updatedPost)
+    if(error) {
+      console.log(error);
+    }else{
+      console.log('en route');
+      for(let i = 0 ; i < foundRestaurant.posts.length; i++){
+        let thisPost = foundRestaurant.posts[i]._id.toString()
+        console.log(thisPost);
+
+        if(thisPost === req.params.postid.toString()){
+          console.log(true);
+          let foundPost = foundRestaurant.posts[i]
+          foundPost.title = req.body.title
+          foundPost.stars = req.body.stars
+          foundPost.body = req.body.body
+          foundPost.save((err, data) => {
+            foundRestaurant.save((err, data) => {
+              Post.findByIdAndUpdate(req.params.postid, foundPost, {new:true}, (err, updatedPost) => {
+                Restaurant.find({}, (err, foundRestaurants) => {
+                  console.log(foundRestaurants);
+                  res.json(foundRestaurants)
+                })
+              })
+            })
+          })
+        }
+      }
           }
         })
         })
-    })
 post.delete('/:userid/:postid', (req, res) => {
   Restaurant.findById(req.params.userid, (error, foundRestaurant) => {
     Post.findByIdAndRemove(req.params.postid, (error, deletedUser) => {

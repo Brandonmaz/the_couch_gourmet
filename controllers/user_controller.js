@@ -14,7 +14,7 @@ user.get('/', (req, res) => {
 
 user.get('/posts/:userid', (req, res) => {
   Post.find({authorId: req.params.userid}, (err, foundPosts) => {
-    console.log(foundPosts);
+    res.json(foundPosts)
   })
 })
 

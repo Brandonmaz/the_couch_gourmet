@@ -31,7 +31,9 @@ const postSchema = new Schema ({
                                       return true
                                     }, message: 'Your post cannot include links or images.'}},
   author: {type:String, required: true},
-  authorId: {type:String, required: true}
+  authorId: {type:String, required: true},
+  restName: {type:String, required:true},
+  restId: {type:String, required:true}
     }, {timestamps: true})
 
 

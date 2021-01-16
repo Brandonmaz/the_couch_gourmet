@@ -1,6 +1,7 @@
 class Gatekeeper extends React.Component {
   state = {
     restaurants: [],
+    currentUserPosts: [],
     sessions:{
       currentRestaurant: {
         username: "",
@@ -140,10 +141,16 @@ class Gatekeeper extends React.Component {
     document.querySelector('#restaurantProfile').style.display = 'none'
     document.querySelector('#feedApp').style.display = 'block'
   }
+  reloadUserPosts = (id) => {
+    axios.get('/user/posts/' + id).then(response => {
+      this.setState({
+        currentUserPosts: response.data
+      })
+    })
+  }
   login = (data) => {
     event.preventDefault()
     axios.post('/sessions/', data).then(response => {
-      console.log(response.data);
       if((typeof response.data) === 'string') {
         this.setState({
           sessions:{
@@ -183,7 +190,6 @@ class Gatekeeper extends React.Component {
   loginUser = (data) => {
     event.preventDefault()
     axios.post('/user_sessions/', data).then(response => {
-      console.log(response.data);
       if((typeof response.data) === 'string') {
         this.setState({
           sessions:{
@@ -215,11 +221,13 @@ class Gatekeeper extends React.Component {
         document.querySelector('#loginForm').reset()
         document.querySelector('#loginDiv').style.display = 'none'
         this.changeNav('user')
+        this.reloadUserPosts(response.data._id)
       }
     })
   }
   logout = () => {
     this.setState({
+        currentUserPosts: [],
         sessions:{
           currentRestaurant: {
             username: "",
@@ -254,10 +262,18 @@ class Gatekeeper extends React.Component {
       this.setState({
         restaurants: response.data
       })
-    }
-    )
+      this.reloadUserPosts(this.state.sessions.currentUser._id)
+    })
   }
-
+  editReview = (postid, restid, data) => {
+    console.log('/post/' + restid + '/' + postid);
+    axios.put('/post/' + restid + '/' + postid, data).then(response => {
+      this.setState({
+        restaurants: response.data
+      })
+      this.reloadUserPosts(this.state.sessions.currentUser._id)
+    })
+  }
   render = () => {
     return (
       <div id='appContainer'>
@@ -299,7 +315,7 @@ class Gatekeeper extends React.Component {
           <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant} sessions={this.state.sessions} createReview={this.createReview}></RestaurantFeed>
         </div>
         <div id='userProfile' style={{display: 'none'}}>
-          <UserProfile editUser={this.editUser} sessions={this.state.sessions}></UserProfile>
+          <UserProfile editUser={this.editUser} sessions={this.state.sessions} editReview={this.editReview} currentUserPosts={this.state.currentUserPosts}></UserProfile>
         </div>
         <div id='restaurantProfile' style={{display: 'none'}}>
           <RestaurantProfile editRestaurant={this.editRestaurant} sessions={this.state.sessions}></RestaurantProfile>
