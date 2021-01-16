@@ -4,7 +4,9 @@ class NewPostForm extends React.Component {
     title: "",
     body: "",
     author: "",
-    authorId: ""
+    authorId: "",
+    restName: "",
+    restId: ""
   }
   checkRequired = (event) => {
     let stars = false
@@ -42,7 +44,9 @@ class NewPostForm extends React.Component {
           stars: event.target.parentElement.querySelector('#stars').value,
           body: event.target.parentElement.querySelector('#body').value,
           author: this.props.sessions.currentUser.username,
-          authorId: this.props.sessions.currentUser._id
+          authorId: this.props.sessions.currentUser._id,
+          restName: this.props.restaurantName,
+          restId: this.props.restaurantId
         })
     this.checkRequired(event)
   }
@@ -67,10 +71,12 @@ class NewPostForm extends React.Component {
 
               <label htmlFor="body"><b>Review</b></label>
               <h6 id="bodyWarning">This field is required.</h6>
-              <input type="text" placeholder="Enter review here" id="body" onKeyDown={this.changeState}/>
+              <input type="text" placeholder="Enter review here" id="body" onChange={this.changeState}/>
 
               <input type='hidden' value={this.props.sessions.currentUser.username} id='author'/>
               <input type='hidden' value={this.props.sessions.currentUser._id} id='authorId'/>
+              <input type='hidden' value={this.props.sessions.restuarantName} id='restName'/>
+              <input type='hidden' value={this.props.sessions.currentUser.restaurantId} id='restId'/>
 
               <p id="bottomP">By posting a review you agree to abide by our <a href="#">Community Guidelines</a>.</p>
 
