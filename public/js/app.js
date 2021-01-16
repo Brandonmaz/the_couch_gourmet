@@ -239,23 +239,23 @@ class Gatekeeper extends React.Component {
   render = () => {
     return (
       <div id='appContainer'>
-        <nav id='loggedOutNav' className='navBar'>
-          <div id='createShowButton' className='navBtn' onClick={this.showForm}>Create a Restaurant Profile</div>
-          <div id='createUserButton' className='navBtn' onClick={this.showNewUser}>Create a Patron Profile</div>
-          <div id='loginShowButton' className='navBtn' onClick={this.showLogin}>Login</div>
-        </nav>
-        <nav id='restaurantNav' className='navBar' style={{display:'none'}}>
-          <div className='navBtn' onClick={this.showFeed}>Feed</div>
-          <div className='navBtn' id='currentRestaurantName' onClick={this.viewMyRestaurantProfile}>
-          </div>
-          <div id='logoutButton' className='navBtn' onClick={this.logout}>Log Out</div>
-        </nav>
-        <nav id='patronNav' className='navBar' style={{display:'none'}}>
-          <div className='navBtn' onClick={this.showFeed}>Feed</div>
-          <div className='navBtn' id='currentPatronName' onClick={this.viewMyPatronProfile}>
-          </div>
-          <div id='logoutButton' className='navBtn' onClick={this.logout}>Log Out</div>
-        </nav>
+        <ul id='loggedOutNav' className='navBar'>
+          <li id='createShowButton' className='navBtn' onClick={this.showForm}>Create a Restaurant Profile</li>
+          <li id='createUserButton' className='navBtn' onClick={this.showNewUser}>Create a Patron Profile</li>
+          <li id='loginShowButton' className='navBtn active' onClick={this.showLogin}>Login</li>
+        </ul>
+        <ul id='restaurantNav' className='navBar' style={{display:'none'}}>
+          <li className='navBtn' onClick={this.showFeed}>Feed</li>
+          <li className='navBtn' id='currentRestaurantName' onClick={this.viewMyRestaurantProfile}>
+          </li>
+          <li id='logoutButton' className='navBtn active' onClick={this.logout}>Log Out</li>
+        </ul>
+        <ul id='patronNav' className='navBar' style={{display:'none'}}>
+          <li className='navBtn' onClick={this.showFeed}>Feed</li>
+          <li className='navBtn' id='currentPatronName' onClick={this.viewMyPatronProfile}>
+          </li>
+          <li id='logoutButton' className='navBtn active' onClick={this.logout}>Log Out</li>
+        </ul>
         <div id='createDiv' style={{display: 'none'}}>
           <NewRestaurantForm createRestaurant={this.createRestaurant}></NewRestaurantForm>
         </div>
