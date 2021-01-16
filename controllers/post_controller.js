@@ -21,7 +21,9 @@ post.post('/:userid', (req, res) => {
       } else {
         foundRestaurant.posts.unshift(createdPost)
         foundRestaurant.save((err, data) => {
-          res.json(foundRestaurant)
+          Restaurant.find({}, (err, foundRestaurants) => {
+            res.json(foundRestaurants)
+          })
         })
       }
     })

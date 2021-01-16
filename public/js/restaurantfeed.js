@@ -4,12 +4,9 @@ class RestaurantFeed extends React.Component {
   }
   createPost = (id, data) => {
     event.preventDefault()
-    axios.post('/post/' + id, data).then(response => {
-      this.setState({
-        posts: response.data.posts
-      })
-    }
-    )
+    event.target.reset()
+    event.target.style.display= "none"
+    this.props.createReview(id, data)
   }
   toggleReviews = (event) => {
     let id = event.target.getAttribute('_id')

@@ -4,10 +4,17 @@ const user = express.Router()
 
 const User = require('../models/user.js')
 const Restaurant = require('../models/restaurant.js')
+const Post = require('../models/posts.js')
 
 user.get('/', (req, res) => {
   User.find({}, (error, foundUser) => {
     res.json(foundUser)
+  })
+})
+
+user.get('/posts/:userid', (req, res) => {
+  Post.find({authorId: req.params.userid}, (err, foundPosts) => {
+    console.log(foundPosts);
   })
 })
 
