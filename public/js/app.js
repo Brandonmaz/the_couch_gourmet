@@ -9,7 +9,8 @@ class Gatekeeper extends React.Component {
       currentUser: {
         username: "",
         about: "",
-        favorites: ""
+        favorites: "",
+        _id: ""
       },
       error: ""
     }
@@ -24,28 +25,34 @@ class Gatekeeper extends React.Component {
   showForm = () => {
     if(document.querySelector('#createDiv').style.display === 'block') {
       document.querySelector('#createDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'block'
     } else {
       document.querySelector('#createDiv').style.display = 'block'
       document.querySelector('#newUserDiv').style.display = 'none'
       document.querySelector('#loginDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'none'
     }
   }
   showLogin = () => {
     if(document.querySelector('#loginDiv').style.display === 'block') {
       document.querySelector('#loginDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'block'
     } else {
       document.querySelector('#loginDiv').style.display = 'block'
       document.querySelector('#newUserDiv').style.display = 'none'
       document.querySelector('#createDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'none'
     }
   }
   showNewUser = () => {
     if(document.querySelector('#newUserDiv').style.display === 'block') {
       document.querySelector('#newUserDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'block'
     } else {
       document.querySelector('#newUserDiv').style.display = 'block'
       document.querySelector('#createDiv').style.display = 'none'
       document.querySelector('#loginDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'none'
     }
   }
   createRestaurant = (data) => {
@@ -78,8 +85,7 @@ class Gatekeeper extends React.Component {
           currentUser: response.data[1],
           currentRestaurant: {
             username: "",
-            about: "",
-            favorites: ""
+            about: ""
           },
           error: ""
         }
@@ -97,7 +103,8 @@ class Gatekeeper extends React.Component {
           currentUser: {
             username: "",
             about: "",
-            favorites: ""
+            favorites: "",
+            _id: ""
           },
           error: ""
         }
@@ -116,9 +123,11 @@ class Gatekeeper extends React.Component {
     if(string === 'user') {
       document.querySelector('#currentPatronName').innerHTML = this.state.sessions.currentUser.username
       document.querySelector('#patronNav').style.display = 'block'
+      document.querySelector('#feedApp').style.display = 'block'
     } else {
       document.querySelector('#currentRestaurantName').innerHTML = this.state.sessions.currentRestaurant.username
       document.querySelector('#restaurantNav').style.display = 'block'
+      document.querySelector('#feedApp').style.display = 'block'
     }
   }
   resetNav = () => {
@@ -145,7 +154,8 @@ class Gatekeeper extends React.Component {
             currentUser: {
               username: "",
               about: "",
-              favorites: ""
+              favorites: "",
+              _id: ""
             },
             error: response.data
           }
@@ -158,7 +168,8 @@ class Gatekeeper extends React.Component {
             currentUser: {
               username: "",
               about: "",
-              favorites: ""
+              favorites: "",
+              _id: ""
             },
             error: ""
           }
@@ -183,7 +194,8 @@ class Gatekeeper extends React.Component {
             currentUser: {
               username: "",
               about: "",
-              favorites: ""
+              favorites: "",
+              _id: ""
             },
             error: response.data
           }
@@ -216,7 +228,8 @@ class Gatekeeper extends React.Component {
           currentUser: {
             username: "",
             about: "",
-            favorites: ""
+            favorites: "",
+            _id: ""
           },
           error: ""
         }
@@ -236,9 +249,19 @@ class Gatekeeper extends React.Component {
     document.querySelector('#restaurantProfile').style.display = 'none'
     document.querySelector('#feedApp').style.display = 'block'
   }
+  createReview = (id, data) => {
+    axios.post('/post/' + id, data).then(response => {
+      this.setState({
+        restaurants: response.data
+      })
+    }
+    )
+  }
+
   render = () => {
     return (
       <div id='appContainer'>
+      <div className='navContainer'>
         <ul id='loggedOutNav' className='navBar'>
           <li id='createShowButton' className='navBtn' onClick={this.showForm}>Create a Restaurant Profile</li>
           <li id='createUserButton' className='navBtn' onClick={this.showNewUser}>Create a Patron Profile</li>
@@ -256,6 +279,11 @@ class Gatekeeper extends React.Component {
           </li>
           <li id='logoutButton' className='navBtn active' onClick={this.logout}>Log Out</li>
         </ul>
+        </div>
+        <header>
+            <h1>The Couch Gourmet</h1>
+            <h3>Take-out reviews for the new normal...</h3>
+        </header>
         <div id='createDiv' style={{display: 'none'}}>
           <NewRestaurantForm createRestaurant={this.createRestaurant}></NewRestaurantForm>
         </div>
@@ -265,14 +293,17 @@ class Gatekeeper extends React.Component {
         <div id='loginDiv' style={{display: 'none'}}>
           <LoginForm login={this.login} loginUser={this.loginUser} error={this.state.sessions.error}></LoginForm>
         </div>
+        <div className='mainContent'>
+
         <div id='feedApp'>
-          <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant}></RestaurantFeed>
+          <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant} sessions={this.state.sessions} createReview={this.createReview}></RestaurantFeed>
         </div>
         <div id='userProfile' style={{display: 'none'}}>
           <UserProfile editUser={this.editUser} sessions={this.state.sessions}></UserProfile>
         </div>
         <div id='restaurantProfile' style={{display: 'none'}}>
           <RestaurantProfile editRestaurant={this.editRestaurant} sessions={this.state.sessions}></RestaurantProfile>
+        </div>
         </div>
       </div>
     )

@@ -48,41 +48,44 @@ class LoginForm extends React.Component {
   render = () => {
     return (
       <div id='loginContainer'>
-        <div className="login">
-          <header className="login-header">
-            <span className="text">LOGIN</span>
-          </header>
+      <div className="login">
+      <header className="login-header">
+        <span className="text">LOGIN</span>
+      </header>
           <form onSubmit={this.submitForm} className="sign-form" id='loginForm'>
+
+
+
           <div className="imgContainer">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9dsmG0mf7G_IbvdSFt7UkWhDwnOsBjtbEmQ&usqp=CAU" className="avatar"/>
           </div>
-            <div className="sign-container">
-              <label htmlFor="loginname"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" id="loginname" onChange={this.changeState}/>
+              <div className="sign-container">
+                <label htmlFor="loginname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" id="loginname" onChange={this.changeState}/>
 
-              <label htmlFor="loginpassword"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" id="loginpassword" onChange={this.changeState}/>
+                <label htmlFor="loginpassword"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" id="loginpassword" onChange={this.changeState}/>
 
-              <p>Are you logging into a Patron or a Restaurant Account?</p>
-              <div>
-                <h4 className="restaurantH4"><b>Restaurant Account</b></h4>
-                <input type="radio" id="restaurantType" onChange={this.changeSubmit}  className='loginSwitch'checked/>
-                <label htmlFor="resaurantType"></label>
+                <p>Are you logging into a Patron or a Restaurant Account?</p>
+                <div>
+                  <input type="radio" id="restaurantType" onChange={this.changeSubmit}  className='loginSwitch' defaultChecked/>
+                  <label htmlFor="resaurantType"><b>Restaurant Account</b></label>
+                </div>
+                <div>
+                  <input type="radio" id="patronType" onChange={this.changeSubmit} className='loginSwitch'/>
+                  <label htmlFor="patronType"><b>Patron Account</b></label>
+                </div>
+
+                <h6>{this.props.error}</h6>
+                <input className="myButtonLogin" type="submit" id="submitLogin" value="Login" style={{display: 'none'}}/>
+                <div className="myButtonCancel" id="enterLoginNotice">Cancel</div>
+
+                <span className="psw">Forgot <a href="#">password?</a></span>
               </div>
-              <div>
-              <h4 className="patronH4"><b>Patron Account</b></h4>
-                <input type="radio" id="patronType" onChange={this.changeSubmit} className='loginSwitch'/>
-                <label htmlFor="patronType"></label>
-              </div>
 
-              <h6>{this.props.error}</h6>
-              <input className="myButtonLogin" type="submit" id="submitLogin" value="Login" style={{display: 'none'}}/>
-              <div className="myButtonCancel" id="enterLoginNotice">Cancel</div>
 
-              <span className="psw">Forgot <a href="#">password?</a></span>
+            </form>
             </div>
-          </form>
-        </div>
       </div>
     )
   }
