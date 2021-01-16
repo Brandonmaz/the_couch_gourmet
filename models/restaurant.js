@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-// const Posts = require('./posts.js')
+const Post = require('./posts.js')
 
 
 const restaurantSchema = new Schema ({
@@ -13,7 +13,8 @@ const restaurantSchema = new Schema ({
                               return true
                             }}, message: 'Your name must be between 5 and 16 characters long.'}},
   password:{type:String, required:true},
-  about:{type:String, required:true}
+  about:{type:String, required:true},
+  posts: [Post.schema]
 })
 
 

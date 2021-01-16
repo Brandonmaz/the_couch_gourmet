@@ -9,7 +9,8 @@ class Gatekeeper extends React.Component {
       currentUser: {
         username: "",
         about: "",
-        favorites: ""
+        favorites: "",
+        _id: ""
       },
       error: ""
     }
@@ -24,28 +25,34 @@ class Gatekeeper extends React.Component {
   showForm = () => {
     if(document.querySelector('#createDiv').style.display === 'block') {
       document.querySelector('#createDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'block'
     } else {
       document.querySelector('#createDiv').style.display = 'block'
       document.querySelector('#newUserDiv').style.display = 'none'
       document.querySelector('#loginDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'none'
     }
   }
   showLogin = () => {
     if(document.querySelector('#loginDiv').style.display === 'block') {
       document.querySelector('#loginDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'block'
     } else {
       document.querySelector('#loginDiv').style.display = 'block'
       document.querySelector('#newUserDiv').style.display = 'none'
       document.querySelector('#createDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'none'
     }
   }
   showNewUser = () => {
     if(document.querySelector('#newUserDiv').style.display === 'block') {
       document.querySelector('#newUserDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'block'
     } else {
       document.querySelector('#newUserDiv').style.display = 'block'
       document.querySelector('#createDiv').style.display = 'none'
       document.querySelector('#loginDiv').style.display = 'none'
+      document.querySelector('#feedApp').style.display = 'none'
     }
   }
   createRestaurant = (data) => {
@@ -78,8 +85,7 @@ class Gatekeeper extends React.Component {
           currentUser: response.data[1],
           currentRestaurant: {
             username: "",
-            about: "",
-            favorites: ""
+            about: ""
           },
           error: ""
         }
@@ -97,7 +103,8 @@ class Gatekeeper extends React.Component {
           currentUser: {
             username: "",
             about: "",
-            favorites: ""
+            favorites: "",
+            _id: ""
           },
           error: ""
         }
@@ -116,9 +123,11 @@ class Gatekeeper extends React.Component {
     if(string === 'user') {
       document.querySelector('#currentPatronName').innerHTML = this.state.sessions.currentUser.username
       document.querySelector('#patronNav').style.display = 'block'
+      document.querySelector('#feedApp').style.display = 'block'
     } else {
       document.querySelector('#currentRestaurantName').innerHTML = this.state.sessions.currentRestaurant.username
       document.querySelector('#restaurantNav').style.display = 'block'
+      document.querySelector('#feedApp').style.display = 'block'
     }
   }
   resetNav = () => {
@@ -145,7 +154,8 @@ class Gatekeeper extends React.Component {
             currentUser: {
               username: "",
               about: "",
-              favorites: ""
+              favorites: "",
+              _id: ""
             },
             error: response.data
           }
@@ -158,7 +168,8 @@ class Gatekeeper extends React.Component {
             currentUser: {
               username: "",
               about: "",
-              favorites: ""
+              favorites: "",
+              _id: ""
             },
             error: ""
           }
@@ -183,7 +194,8 @@ class Gatekeeper extends React.Component {
             currentUser: {
               username: "",
               about: "",
-              favorites: ""
+              favorites: "",
+              _id: ""
             },
             error: response.data
           }
@@ -216,7 +228,8 @@ class Gatekeeper extends React.Component {
           currentUser: {
             username: "",
             about: "",
-            favorites: ""
+            favorites: "",
+            _id: ""
           },
           error: ""
         }
@@ -266,7 +279,7 @@ class Gatekeeper extends React.Component {
           <LoginForm login={this.login} loginUser={this.loginUser} error={this.state.sessions.error}></LoginForm>
         </div>
         <div id='feedApp'>
-          <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant}></RestaurantFeed>
+          <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant} sessions={this.state.sessions}></RestaurantFeed>
         </div>
         <div id='userProfile' style={{display: 'none'}}>
           <UserProfile editUser={this.editUser} sessions={this.state.sessions}></UserProfile>
