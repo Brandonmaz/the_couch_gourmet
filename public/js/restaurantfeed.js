@@ -63,15 +63,15 @@ class RestaurantFeed extends React.Component {
         <ul>
           {this.props.restaurants.map((restaurant) => {
             return(
-                <li>
+                <li key={restaurant._id}>
                   <h4>{restaurant.username}</h4>
                   <h5>{restaurant.about}</h5>
                   <img src={restaurant.password} alt={restaurant.name}/>
-                  <button class='viewReviews' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
+                  <button className='viewReviews' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
                   <ul id="reviewList" style={{display:'none'}}>
                     {restaurant.posts.map((post) => {
                       return(
-                        <li>
+                        <li key={post._id}>
                           <h4>{post.title}</h4>
                           <h4>{post.stars} Stars</h4>
                           <h6>By: {post.author}</h6>

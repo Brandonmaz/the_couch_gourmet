@@ -252,6 +252,7 @@ class Gatekeeper extends React.Component {
   render = () => {
     return (
       <div id='appContainer'>
+      <div className='navContainer'>
         <ul id='loggedOutNav' className='navBar'>
           <li id='createShowButton' className='navBtn' onClick={this.showForm}>Create a Restaurant Profile</li>
           <li id='createUserButton' className='navBtn' onClick={this.showNewUser}>Create a Patron Profile</li>
@@ -269,6 +270,11 @@ class Gatekeeper extends React.Component {
           </li>
           <li id='logoutButton' className='navBtn active' onClick={this.logout}>Log Out</li>
         </ul>
+        </div>
+        <header>
+            <h1>The Couch Gourmet</h1>
+            <h3>Take-out reviews for the new normal...</h3>
+        </header>
         <div id='createDiv' style={{display: 'none'}}>
           <NewRestaurantForm createRestaurant={this.createRestaurant}></NewRestaurantForm>
         </div>
@@ -278,6 +284,8 @@ class Gatekeeper extends React.Component {
         <div id='loginDiv' style={{display: 'none'}}>
           <LoginForm login={this.login} loginUser={this.loginUser} error={this.state.sessions.error}></LoginForm>
         </div>
+        <div className='mainContent'>
+
         <div id='feedApp'>
           <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant} sessions={this.state.sessions}></RestaurantFeed>
         </div>
@@ -286,6 +294,7 @@ class Gatekeeper extends React.Component {
         </div>
         <div id='restaurantProfile' style={{display: 'none'}}>
           <RestaurantProfile editRestaurant={this.editRestaurant} sessions={this.state.sessions}></RestaurantProfile>
+        </div>
         </div>
       </div>
     )
