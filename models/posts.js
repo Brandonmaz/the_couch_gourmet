@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const postSchema = new Schema ({
-  stars:{type:Number, required:true},
+  stars:{type:String, required:true},
   title:{type:String, required: true, validate: {
                           validator: (str) => {
                           let length = str.length
@@ -29,7 +29,9 @@ const postSchema = new Schema ({
                                           }
                                         }
                                       return true
-                                    }, message: 'Your post cannot include links or images.'}}
+                                    }, message: 'Your post cannot include links or images.'}},
+  author: {type:String, required: true},
+  authorId: {type:String, required: true}
     }, {timestamps: true})
 
 
