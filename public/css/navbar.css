@@ -1,5 +1,5 @@
 body {
-  background-color: grey;
+  background-color: #eeeeee;
   margin: 0;
 }
 div.feedContent {
@@ -9,7 +9,7 @@ div.feedContent {
 }
 ul.navBar {
   list-style-type: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   width: 16em;
   background-color: ghostwhite;
