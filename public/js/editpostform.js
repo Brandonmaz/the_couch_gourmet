@@ -86,7 +86,6 @@ class EditPostForm extends React.Component {
 
               <input className="myButton" type="submit" id="editReview" value="Submit Changes" style={{display:'none'}}/>
             </div>
-
           </form>
       </div>
     )

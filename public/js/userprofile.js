@@ -86,6 +86,9 @@ class UserProfile extends React.Component {
   submitEdit = (postid, restid, data) => {
     this.props.editReview(postid, restid, data)
   }
+  deleteReview = (postid, restid) => {
+    this.props.deleteReview(postid, restid)
+  }
   render = () => {
     return (
       <div id='currentUserProfile'>
@@ -124,7 +127,7 @@ class UserProfile extends React.Component {
           <h4 className='profileValue'>{this.props.sessions.currentUser.about}</h4>
           <h3 className='profileCatagory'>Favorite Cuisines</h3>
           <h4 className='profileValue'>{this.props.sessions.currentUser.favorites}</h4>
-          <UserFeed editReview={this.submitEdit} posts={this.props.currentUserPosts} sessions={this.props.sessions}></UserFeed>
+          <UserFeed editReview={this.submitEdit} posts={this.props.currentUserPosts} sessions={this.props.sessions} deleteReview={this.deleteReview}></UserFeed>
         </div>
       </div>
     )
