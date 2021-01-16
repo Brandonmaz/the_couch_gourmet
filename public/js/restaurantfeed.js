@@ -63,7 +63,7 @@ class RestaurantFeed extends React.Component {
                 <li key={restaurant._id}>
                   <h4>{restaurant.username}</h4>
                   <h5>{restaurant.about}</h5>
-                  <img src={restaurant.password} alt={restaurant.name}/>
+                  <img src={restaurant.img} alt={restaurant.name}/>
                   <button className='viewReviews' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
                   <ul id="reviewList" style={{display:'none'}}>
                     {restaurant.posts.map((post) => {
