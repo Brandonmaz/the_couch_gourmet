@@ -56,7 +56,7 @@ class RestaurantFeed extends React.Component {
   }
   render = () => {
     return (
-      <div>
+      <div className="feedContent">
         <ul>
           {this.props.restaurants.map((restaurant) => {
             return(
