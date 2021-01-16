@@ -56,16 +56,31 @@ post.put('/:userid/:postid', (req, res) => {
           })
         }
       }
-          }
-        })
-        })
+    }
+  })
+})
 post.delete('/:userid/:postid', (req, res) => {
+  console.log('accessed');
   Restaurant.findById(req.params.userid, (error, foundRestaurant) => {
-    Post.findByIdAndRemove(req.params.postid, (error, deletedUser) => {
-      foundRestaurant.save((err,data) => {
-        res.json(foundRestaurant)
-      })
-    })
+    if(error) {
+      console.log(error);
+    }else{
+      console.log('en route');
+      for(let i = 0 ; i < foundRestaurant.posts.length; i++){
+        let thisPost = foundRestaurant.posts[i]._id.toString()
+        if(thisPost === req.params.postid.toString()){
+          foundRestaurant.posts.splice(i, 1)
+          foundRestaurant.save((err, data) => {
+              Post.findByIdAndRemove(req.params.postid, (err, removedPost) => {
+                Restaurant.find({}, (err, foundRestaurants) => {
+                  console.log(foundRestaurants);
+                  res.json(foundRestaurants)
+                })
+              })
+            })
+        }
+      }
+    }
   })
 })
 

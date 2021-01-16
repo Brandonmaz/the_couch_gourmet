@@ -274,6 +274,17 @@ class Gatekeeper extends React.Component {
       this.reloadUserPosts(this.state.sessions.currentUser._id)
     })
   }
+  deleteReview = (postid, restid) => {
+    console.log('/post/' + restid + '/' + postid);
+    axios.delete('/post/' + restid + '/' + postid).then(response => {
+      console.log('through');
+      this.setState({
+        restaurants: response.data
+      })
+      console.log(response.data);
+      this.reloadUserPosts(this.state.sessions.currentUser._id)
+    })
+  }
   render = () => {
     return (
       <div id='appContainer'>
@@ -315,7 +326,7 @@ class Gatekeeper extends React.Component {
           <RestaurantFeed restaurants={this.state.restaurants} editRestaurant={this.editRestaurant} deleteRestaurant={this.deleteRestaurant} sessions={this.state.sessions} createReview={this.createReview}></RestaurantFeed>
         </div>
         <div id='userProfile' style={{display: 'none'}}>
-          <UserProfile editUser={this.editUser} sessions={this.state.sessions} editReview={this.editReview} currentUserPosts={this.state.currentUserPosts}></UserProfile>
+          <UserProfile editUser={this.editUser} sessions={this.state.sessions} editReview={this.editReview} currentUserPosts={this.state.currentUserPosts} deleteReview={this.deleteReview}></UserProfile>
         </div>
         <div id='restaurantProfile' style={{display: 'none'}}>
           <RestaurantProfile editRestaurant={this.editRestaurant} sessions={this.state.sessions}></RestaurantProfile>
