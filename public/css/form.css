@@ -16,12 +16,11 @@ h6 {
   padding: 15px;
 }
 .container {
-  padding: 16px;
+  padding: 20px;
   background-color: lightgrey;
   width: 50%;
   margin: 0 auto;
-  /* filter: drop-shadow(0 0 5px #d83526); */
-  /* box-shadow: 10px 20px 30px blue; */
+  margin-left: 30%;
   animation: form 5s infinite;
 
 }
@@ -82,4 +81,28 @@ a {
 .signin {
   background-color: #f1f1f1;
   text-align: center;
+}
+
+/*========Tablet==============*/
+@media screen and (max-width: 900px) {
+  #newUserForm {
+    margin-left: -150px;
+    margin-top: 20px;
+    width: 130vw;
+    height: 86%;
+  }
+  #newRestForm {
+    margin-left: -150px;
+    margin-top: 20px;
+    width: 130vw;
+    height: 86%;
+  }
+}
+/*============Phone===========*/
+@media (max-width: 400px){
+  #newUserForm, #newRestForm {
+    margin-left: -100px;
+    width: 130vw;
+    height: 86%;
+  }
 }
