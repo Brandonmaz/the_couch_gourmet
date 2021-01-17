@@ -92,7 +92,6 @@ class UserProfile extends React.Component {
   render = () => {
     return (
       <div id='currentUserProfile'>
-        <button id='showHideEditButton' onClick={this.showEdit}>Edit My Profile</button>
         <div id='editUserDiv' className="mainContainer" style={{display: 'none'}}>
             <form onSubmit={this.submitForm} id='editUserForm'>
               <div className="container">
@@ -120,14 +119,18 @@ class UserProfile extends React.Component {
               </div>
             </form>
         </div>
-        <div id='userProfileInfo'>
-          <h3 className='profileCatagory'>Username</h3>
-          <h4 className='profileValue'>{this.props.sessions.currentUser.username}</h4>
-          <h3 className='profileCatagory'>About</h3>
+        <div className="card" id='userProfileInfo'>
+        <h2 id="userProfile">User Profile Card</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9dsmG0mf7G_IbvdSFt7UkWhDwnOsBjtbEmQ&usqp=CAU" className="avatar"/>
+          <h1 className='profileValue'>{this.props.sessions.currentUser.username}</h1>
+          <h3 className='profileCatagory'>About Me</h3>
           <h4 className='profileValue'>{this.props.sessions.currentUser.about}</h4>
           <h3 className='profileCatagory'>Favorite Cuisines</h3>
           <h4 className='profileValue'>{this.props.sessions.currentUser.favorites}</h4>
           <UserFeed editReview={this.submitEdit} posts={this.props.currentUserPosts} sessions={this.props.sessions} deleteReview={this.deleteReview}></UserFeed>
+        </div>
+        <div className="button">
+          <button className="myButton profileButton" id='showHideEditButton' onClick={this.showEdit}>Edit My Profile</button>
         </div>
       </div>
     )
