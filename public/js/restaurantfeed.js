@@ -56,14 +56,16 @@ class RestaurantFeed extends React.Component {
   }
   render = () => {
     return (
-      <div className="feedContent">
-        <ul>
+      <div className="feedContainer">
+        <div className="feedContent">
           {this.props.restaurants.map((restaurant) => {
             return(
-                <li key={restaurant._id}>
-                  <h4>{restaurant.username}</h4>
-                  <h5>{restaurant.about}</h5>
-                  <img src={restaurant.img} alt={restaurant.name}/>
+              <div className="individualContent">
+                <div className="infoContent">
+                  <h3 id="restName">{restaurant.username}</h3>
+                  <img className="feedImg" src={restaurant.img} alt={restaurant.name}/>
+                  <h4>{restaurant.about}</h4>
+                </div>
                   <button className='viewReviews' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
                   <ul id="reviewList" style={{display:'none'}}>
                     {restaurant.posts.map((post) => {
@@ -85,9 +87,9 @@ class RestaurantFeed extends React.Component {
                          </div>
                      </div>
                      : null}
-                </li>
-              )})}
-        </ul>
+              </div>
+            )})}
+        </div>
       </div>
      )
   }
