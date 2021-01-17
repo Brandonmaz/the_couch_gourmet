@@ -1,0 +1,31 @@
+.feedContainer {
+  margin: 0 auto;
+  border: 2px solid yellow;
+  margin-left: -20%;
+  width: 100%;
+}
+.feedContent {
+  margin-left: 5%;
+  border: 2px solid hotpink;
+}
+.individualContent {
+  border: 2px solid blue;
+  margin-left: 1%;
+}
+.feedImg {
+  /* position: relative; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 100%;
+}
+.infoContent {
+  border: 2px solid black;
+}
+#restName {
+  text-align: center;
+}
+#addReview {
+
+}
