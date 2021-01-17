@@ -94,7 +94,7 @@ toggleSpan = (event) => {
                   <img className="modal-content" id="img01" src={restaurant.img}/>
                   <div id="caption"></div>
                 </div>
-                  <button className='viewReviews' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
+                  <button className='viewReviews myButton' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
                   <ul id="reviewList" style={{display:'none'}}>
                     {restaurant.posts.map((post) => {
                       return(
@@ -109,7 +109,7 @@ toggleSpan = (event) => {
                   </ul>
                   {(this.props.sessions.currentUser._id !== "") ?
                     <div id='allowPostsDiv'>
-                        <button id='addReview' _id={restaurant._id} onClick={this.toggleAdd}>Post a Review</button>
+                        <button className="myButton" id='addReview' _id={restaurant._id} onClick={this.toggleAdd}>Post a Review</button>
                         <div id='reviewFormDiv' style={{display: 'none'}}>
                          <NewPostForm sessions={this.props.sessions} restaurantName={restaurant.username} restaurantId={restaurant._id} createPost={this.createPost}></NewPostForm>
                          </div>

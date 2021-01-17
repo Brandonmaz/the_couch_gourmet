@@ -37,3 +37,6 @@ h2#userProfile {
   cursor: pointer;
   width: 50%;
 }
+.myButton {
+  outline: none;
+}
