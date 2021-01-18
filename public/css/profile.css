@@ -6,7 +6,7 @@
   cursor: pointer;
   width: 100%;
 }
-.card {
+.card{
   background: lightgrey;
   max-width: 500px;
   margin: auto;
@@ -39,4 +39,14 @@ h2#userProfile {
 }
 .myButton {
   outline: none;
+}
+
+.profileDiv {
+  margin: 0 auto;
+}
+
+#editButton, #deleteButton {
+  display: block;
+  margin: 1em auto;
+
 }
