@@ -2,7 +2,7 @@
 div.feedContent {
   margin-left: 25%;
   padding: 1px 16px;
-  height: 1000px;
+  /* height: 1000px; */
 }
 ul.navBar {
   list-style-type: none;
