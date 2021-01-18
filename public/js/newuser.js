@@ -53,7 +53,7 @@ class NewUserForm extends React.Component {
     this.props.createUser(this.state)
   }
   changeToLogin = () => {
-    document.querySelector('#createDiv').style.display = 'none'
+    document.querySelector('#newUserDiv').style.display = 'none'
     document.querySelector('#loginDiv').style.display = 'block'
   }
   render = () => {
