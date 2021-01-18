@@ -3,7 +3,9 @@ const bcrypt = require('bcrypt')
 const restaurant = express.Router()
 
 
+
 const Restaurant = require('../models/restaurant.js')
+const restaurantSeed = require('../data/restaurantData.js')
 
 restaurant.get('/', (req, res) => {
   Restaurant.find({}, (error, foundRestaurant) => {
@@ -53,4 +55,18 @@ restaurant.delete('/:id', (req, res) => {
   })
 })
 
+
+
+//restaurant seed route
+
+restaurant.get('/seeddata', (req, res) => {
+  Restaurant.insertMany(restaurantSeed, (err, createdRestaurants) => {
+    if(err){
+      console.log(err);
+    } else {
+      console.log('data seeded');
+      res.redirect('/')
+    }
+  })
+})
 module.exports = restaurant

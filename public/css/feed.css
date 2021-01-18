@@ -39,7 +39,8 @@
   display: none;
   position: fixed;
   z-index: 1;
-  padding-top: 70px;
+  /* padding-top: 1em; */
+  padding-bottom: 20px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -60,9 +61,10 @@
   color: #ccc;
   padding: 10px;
   height: 100%;
+  font-weight: lighter;
 }
 .caption {
-  margin-bottom: 3em;
+  margin-bottom: 1em;
 }
 .modal-content, .caption, .individualContent {
   -webkit-animation-name: zoom;
@@ -79,16 +81,21 @@
   to{transform: scale(1)}
 }
 .close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
+  position: fixed;
+  margin: .2em;
+  padding: .05em;
+  right: 10px;
   color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s
+  font-size: 30px;
+  font-weight: bolder;
+  transition: 0.3s;
+  border: .15px solid #f1f1f1;
+  border-radius: 5px;
+  line-height: 30px;
 }
 .close:hover, .close:focus {
   color: #bbb;
+  border: .25px solid #bbb;
   text-decoration: none;
   cursor: pointer;
 }
