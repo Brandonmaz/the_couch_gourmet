@@ -2,7 +2,7 @@ const express = require('express')
 const bcrypt = require('bcrypt')
 const restaurant = express.Router()
 
-const restaurantList = require('../data/restaurantData.js')
+
 const Restaurant = require('../models/restaurant.js')
 
 restaurant.get('/', (req, res) => {
