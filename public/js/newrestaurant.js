@@ -61,11 +61,11 @@ class NewRestaurantForm extends React.Component {
 
               <label htmlFor="password"><b>Password</b></label>
               <h6>This field is required and must be between 7 and 16 characters.</h6>
-              <input type="text" placeholder="Enter Password" id="password" onChange={this.changeState}/>
+              <input className='textarea' placeholder="Enter Password" id="password" onChange={this.changeState}/>
 
               <label htmlFor="about"><b>About</b></label>
               <h6>This field is required</h6>
-              <input type="text" placeholder="Enter About" id="about" onChange={this.changeState}/>
+              <textarea type="text" placeholder="Enter About" id="about" onChange={this.changeState}></textarea>
 
               <p id="bottomP">By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 

@@ -37,6 +37,12 @@ header h1 {
   margin: 0;
 }
 
+
+button{
+  display: block;
+  margin: 1em auto;
+}
+
 button:hover{
   cursor: pointer;
 }

@@ -74,7 +74,7 @@ class NewUserForm extends React.Component {
 
               <label htmlFor="userAbout"><b>About</b></label>
               <h6>This field is required</h6>
-              <input type="text" placeholder="Enter About" id="userAbout" onChange={this.changeState}/>
+              <textarea className="textarea" placeholder="Enter About" id="userAbout" onChange={this.changeState}></textarea>
 
               <label htmlFor="userFavorites"><b>Favorite Cuisines</b></label>
               <h6>This field is required</h6>
