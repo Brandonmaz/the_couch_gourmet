@@ -57,7 +57,7 @@ class NewPostForm extends React.Component {
     return (
       <div className="mainContainer">
           <form onSubmit={this.submitForm} id='newPostForm'>
-            <div className="container">
+            <div className="container reviewContainer">
               <h1>Review</h1>
               <p id="topP">Leave a Review for {this.props.restaurantName}</p>
 
