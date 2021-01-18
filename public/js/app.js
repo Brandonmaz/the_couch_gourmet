@@ -332,6 +332,7 @@ class Gatekeeper extends React.Component {
           <RestaurantProfile editRestaurant={this.editRestaurant} sessions={this.state.sessions}></RestaurantProfile>
         </div>
         </div>
+  
       </div>
     )
   }

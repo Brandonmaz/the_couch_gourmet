@@ -126,7 +126,7 @@ class RestaurantProfile extends React.Component {
                 <br/>
                 <label htmlFor="about"><b>About</b></label>
                 <h6>This field is required</h6>
-                <input type="text" id="about" placeholder="Enter About" onChange={this.changeState} defaultValue={this.props.sessions.currentRestaurant.about}/>
+                <textarea className="textarea" id="about" placeholder="Enter About" onChange={this.changeState} defaultValue={this.props.sessions.currentRestaurant.about}></textarea>
 
                 <input className="myButton" type="submit" id="submitEdit" value="Edit Restaurant Profile" style={{display: 'block'}}/>
                 </form>
