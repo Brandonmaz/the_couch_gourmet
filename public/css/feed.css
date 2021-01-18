@@ -14,6 +14,11 @@
   margin-left: 1%;
   filter: drop-shadow(0 0 5px black);
 }
+.reviewContainer {
+  position: relative;
+  width: 500px;
+  right: 150px;
+}
 .modalContent {
   padding: 20px;
 }
@@ -101,10 +106,25 @@
   .modal-content{
     width: 100%;
   }
+  .reviewContainer {
+    position: relative;
+    /* z-index: 1; */
+    width: 100%;
+    right: 100px;
+  }
+  .individualContent {
+    margin-bottom: 50px;
+  }
 }
 @media screen and (max-width: 400px){
+  .reviewContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    right: 100px;
+  }
   .individualContent {
-    height: 375px;
+    margin-bottom: 50px;
     width: 375px;
     margin-left: -75px;
   }
