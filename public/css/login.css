@@ -48,6 +48,7 @@
 .login {
   position: relative;
   width: 85%;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 5px;
@@ -72,7 +73,7 @@
   margin: 18px;
   width: 50%;
   height: 95%;
-  background: lightgrey;
+  background: #feeab2;
   border-radius: 5px;
   transition: width 0.5s ease-in-out;
   margin-left: 25%;

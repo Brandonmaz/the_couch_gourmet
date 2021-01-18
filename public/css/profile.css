@@ -1,0 +1,42 @@
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+.card {
+  background: lightgrey;
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  margin-top: 100px;
+  animation: card 5s infinite;
+}
+@keyframes card {
+  0%   {filter: drop-shadow(0 0 5px red);}
+  17%  {filter: drop-shadow(0 0 5px orange);}
+  34%  {filter: drop-shadow(0 0 5px yellow);}
+  51%  {filter: drop-shadow(0 0 5px green);}
+  68%  {filter: drop-shadow(0 0 5px blue);}
+  84%  {filter: drop-shadow(0 0 5px indigo);}
+  100%  {filter: drop-shadow(0 0 5px violet);}
+
+}
+h2#userProfile {
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+}
+.restButton {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  justify-content: center;
+  cursor: pointer;
+  width: 50%;
+}
+.myButton {
+  outline: none;
+}

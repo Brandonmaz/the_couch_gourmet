@@ -98,13 +98,20 @@ class RestaurantProfile extends React.Component {
   render = () => {
     return (
       <div id='currentRestaurantProfile'>
-        <h4>{this.props.sessions.currentRestaurant.username}</h4>
-        <h5>{this.props.sessions.currentRestaurant.about}</h5>
-        <img src={this.props.sessions.currentRestaurant.password} alt={this.props.sessions.currentRestaurant.name}/>
-        <button id='deleteButton' onClick={this.deletePost} _id={this.props.sessions.currentRestaurant._id}>Delete Restaurant Profile</button>
-          <button id='editButton' onClick={this.toggleEdit}>Edit This Restaurant</button>
+        <div className="card">
+          <h2 id="userProfile">Restaurant Profile Card</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9dsmG0mf7G_IbvdSFt7UkWhDwnOsBjtbEmQ&usqp=CAU" className="avatar"/>
+          <img src={this.props.sessions.currentRestaurant.password} alt={this.props.sessions.currentRestaurant.name}/>
+          <h1>{this.props.sessions.currentRestaurant.username}</h1>
+          <h3>About Our Restaurant</h3>
+          <h4>{this.props.sessions.currentRestaurant.about}</h4>
+        </div>
+
+          <button className="myButton restButton" id='deleteButton' onClick={this.deletePost} _id={this.props.sessions.currentRestaurant._id}>Delete Restaurant Profile</button>
+          <button className="myButton restButton" id='editButton' onClick={this.toggleEdit}>Edit This Restaurant</button>
+
           <div className='editDiv container' style={{display: 'none'}}>
-            <button id="upload_widget" class="cloudinary-button" onClick={this.openWidget}>Upload Profile Image</button>
+            <button className="myButton" id="upload_widget" class="cloudinary-button" onClick={this.openWidget}>Upload Profile Image</button>
             <form onSubmit={this.submitForm} id='editRestForm' _id={this.props.sessions.currentRestaurant._id}>
 
                 <label htmlFor="name"><b>Name</b></label>

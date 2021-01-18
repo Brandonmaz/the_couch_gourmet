@@ -54,6 +54,32 @@ class RestaurantFeed extends React.Component {
         event.target.innerHTML = 'Cancel Post'
     }
   }
+
+
+toggleModal = () => {
+  event.persist()
+  /* Get the modal */
+  let modal = document.getElementById("myModal");
+
+  /* Get the image and insert it inside the modal - use its "alt" text as a caption */
+  let img = document.getElementById("myImg")
+  let mImg = document.getElementById("img01")
+  let cText = document.getElementById("caption")
+  img.onclick = () => {
+    modal.style.display = "block"
+    mImg.src = this.src
+    cText.innerHTML = this.alt
+  }
+}
+toggleSpan = (event) => {
+  /* Get the <span> element that closes the modal */
+  let span = document.getElementsByClassName("close")[0]
+  event.persist()
+  /* When the user clicks on <span> (x), close the modal */
+  span.onclick = () => {
+    modal.style.display = "none"
+  }
+}
   render = () => {
     return (
       <div className="feedContainer">
@@ -61,12 +87,14 @@ class RestaurantFeed extends React.Component {
           {this.props.restaurants.map((restaurant) => {
             return(
               <div className="individualContent">
-                <div className="infoContent">
-                  <h3 id="restName">{restaurant.username}</h3>
-                  <img className="feedImg" src={restaurant.img} alt={restaurant.name}/>
-                  <h4>{restaurant.about}</h4>
+                <h2 id="restName">{restaurant.username}</h2>
+                <img id="myImg" src={restaurant.img} alt={restaurant.about} onClick={this.toggleModal}/>
+                <div id="myModal" className="modal">
+                  <span className="close" onClick={this.toggleSpan}>&times;</span>
+                  <img className="modal-content" id="img01" src={restaurant.img}/>
+                  <div id="caption"></div>
                 </div>
-                  <button className='viewReviews' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
+                  <button className='viewReviews myButton' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
                   <ul id="reviewList" style={{display:'none'}}>
                     {restaurant.posts.map((post) => {
                       return(
@@ -81,7 +109,7 @@ class RestaurantFeed extends React.Component {
                   </ul>
                   {(this.props.sessions.currentUser._id !== "") ?
                     <div id='allowPostsDiv'>
-                        <button id='addReview' _id={restaurant._id} onClick={this.toggleAdd}>Post a Review</button>
+                        <button className="myButton" id='addReview' _id={restaurant._id} onClick={this.toggleAdd}>Post a Review</button>
                         <div id='reviewFormDiv' style={{display: 'none'}}>
                          <NewPostForm sessions={this.props.sessions} restaurantName={restaurant.username} restaurantId={restaurant._id} createPost={this.createPost}></NewPostForm>
                          </div>
