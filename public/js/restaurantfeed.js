@@ -90,7 +90,7 @@ toggleSpan = (event) => {
                     <div className='modalContent'>
                       <h2 className='modalTitle'>About {restaurant.username}</h2>
                       <h4 className="caption">{restaurant.about}</h4>
-                      <button className='viewReviews myButton' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
+                        <button className='viewReviews myButton' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
                       <ul id="reviewList" style={{display:'none'}}>
                           {restaurant.posts.map((post) => {
                             return(
