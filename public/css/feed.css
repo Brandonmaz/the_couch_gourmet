@@ -14,48 +14,65 @@
   max-width: 600px;
   margin-left: 1%;
   filter: drop-shadow(0 0 5px black);
+  padding: 2em;
+  margin: 1em;
+}
+.imageModalDiv {
+  width: 80%;
+  margin: 0 auto;
 }
 #myImg {
   border-radius: 5px;
   display: block;
   cursor: pointer;
   transition: 0.3s;
-  margin: auto;
+  margin: 0 auto;
   width: 100%;
-  max-width: 600px;
+  height: auto;
 }
 #myImg:hover {
   opacity: 0.7;
 }
 .modal {
   display: none;
-  position: fixed;
+  position: absolute;
   z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  width: 100%;
+
+  margin: 0 auto;
+  width: 90%;
+  height: 90%;
   overflow: auto;
   background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0,0,0,0.8);
+  margin: 0 auto;
+  border-radius: 5px;
+  transform: translate(-3.25em, -4.75em);
   /* border: 2px solid black; */
 }
-.modal-content {
-  display: block;
-  margin:auto;
-  width: 80%;
-  max-width: 700px;
+.modalContent {
+  margin-top: 2em;
 }
-#caption {
-  margin: auto;
+.modalTitle{
+  font-size: 1em;
+  text-decoration: underline;
+  margin: 0 auto;
   display: block;
   width: 80%;
-  max-width: 700px;
   text-align: center;
   color: #ccc;
   padding: 10px;
-  height: 150px;
 }
-.modal-content, #caption {
+.caption {
+  font-weight: normal;
+  font-size: 1.15em;
+  margin: auto;
+  display: block;
+  width: 80%;
+  text-align: center;
+  color: #ccc;
+  padding: 10px;
+}
+.modalTitle, .caption {
   -webkit-animation-name: zoom;
   -webkit-animation-duration: 0.6s;
   animation-name: zoom;
@@ -94,7 +111,12 @@
  height: 100%;
 }
 @media only screen and (max-width: 700px) {
-  .modal-content{
-    width: 100%;
+  .close {
+    font-size: 20px;
   }
+
+  .modal {
+    width: 103%;
+  }
+
 }

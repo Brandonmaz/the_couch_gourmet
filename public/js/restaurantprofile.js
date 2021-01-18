@@ -54,8 +54,10 @@ class RestaurantProfile extends React.Component {
   toggleEdit = (event) => {
     if(event.target.nextSibling.style.display === 'none') {
       event.target.nextSibling.style.display = 'block'
+      event.target.innerHTML = 'Cancel Edit'
       this.changeState(event)
     } else {
+      event.target.innerHTML = 'Edit This Restaurant'
       document.querySelector('#editRestForm').reset()
       event.target.nextSibling.style.display = 'none'
       this.setState({
@@ -105,12 +107,12 @@ class RestaurantProfile extends React.Component {
           <h1>{this.props.sessions.currentRestaurant.username}</h1>
           <h3>About Our Restaurant</h3>
           <h4>{this.props.sessions.currentRestaurant.about}</h4>
-        </div>
 
-          <button className="myButton restButton" id='deleteButton' onClick={this.deletePost} _id={this.props.sessions.currentRestaurant._id}>Delete Restaurant Profile</button>
+
+
           <button className="myButton restButton" id='editButton' onClick={this.toggleEdit}>Edit This Restaurant</button>
 
-          <div className='editDiv container' style={{display: 'none'}}>
+          <div className='editDiv container profileDiv' style={{display: 'none'}}>
             <button className="myButton" id="upload_widget" class="cloudinary-button" onClick={this.openWidget}>Upload Profile Image</button>
             <form onSubmit={this.submitForm} id='editRestForm' _id={this.props.sessions.currentRestaurant._id}>
 
@@ -129,6 +131,8 @@ class RestaurantProfile extends React.Component {
                 <input className="myButton" type="submit" id="submitEdit" value="Edit Restaurant Profile" style={{display: 'block'}}/>
                 </form>
             </div>
+            <button className="myButton restButton" id='deleteButton' onClick={this.deletePost} _id={this.props.sessions.currentRestaurant._id}>Delete Restaurant Profile</button>
+        </div>
       </div>
      )
   }
