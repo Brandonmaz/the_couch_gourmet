@@ -6,6 +6,7 @@ class RestaurantFeed extends React.Component {
     event.preventDefault()
     event.target.reset()
     event.target.style.display= "none"
+    event.target.parentElement.parentElement.previousSibling.innerHTML = 'Post a Review'
     this.props.createReview(id, data)
   }
   toggleReviews = (event) => {
