@@ -92,42 +92,46 @@ class UserProfile extends React.Component {
   render = () => {
     return (
       <div id='currentUserProfile'>
-        <button id='showHideEditButton' onClick={this.showEdit}>Edit My Profile</button>
-        <div id='editUserDiv' className="mainContainer" style={{display: 'none'}}>
-            <form onSubmit={this.submitForm} id='editUserForm'>
-              <div className="container">
-                <h1>Edit Patron Profile</h1>
-                <p id="topP">Make changes to your profile here!</p>
+        <div className="card">
+        <button className="myButton" id='showHideEditButton'  onClick={this.showEdit}>Edit My Profile</button>
+        <h2 id="userProfile">Patron Profile Card</h2>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9dsmG0mf7G_IbvdSFt7UkWhDwnOsBjtbEmQ&usqp=CAU" className="avatar"/>
+          <div id='editUserDiv' className="mainContainer" style={{display: 'none'}}>
+              <form onSubmit={this.submitForm} id='editUserForm'>
+                <div className="container">
+                  <h1 id="userProfile">Edit Patron Profile</h1>
+                  <p id="topP">Make changes to your profile here!</p>
 
-                <label htmlFor="userEditName"><b>Username</b></label>
-                <h6 style={{display: 'none'}}>This field is required and must be between 5 and 16 characters.</h6>
-                <input type="text" placeholder="Enter Name" id="userEditName" defaultValue={this.state.username} onChange={this.changeState}/>
+                  <label htmlFor="userEditName"><b>Username</b></label>
+                  <h6 style={{display: 'none'}}>This field is required and must be between 5 and 16 characters.</h6>
+                  <input type="text" placeholder="Enter Name" id="userEditName" defaultValue={this.state.username} onChange={this.changeState}/>
 
-                <label htmlFor="userEditPassword"><b>Password</b></label>
-                <h6>You must enter a password to save your changes.</h6>
-                <input type="text" placeholder="Enter Password" id="userEditPassword" defaultValue={this.state.password} onChange={this.changeState}/>
+                  <label htmlFor="userEditPassword"><b>Password</b></label>
+                  <h6>You must enter a password to save your changes.</h6>
+                  <input type="text" placeholder="Enter Password" id="userEditPassword" defaultValue={this.state.password} onChange={this.changeState}/>
 
-                <label htmlFor="userEditAbout"><b>About</b></label>
-                <h6 style={{display: 'none'}}>This field is required</h6>
-                <textarea className="textarea" placeholder="Enter About" id="userEditAbout" defaultValue={this.state.about} onChange={this.changeState}></textarea>
+                  <label htmlFor="userEditAbout"><b>About</b></label>
+                  <h6 style={{display: 'none'}}>This field is required</h6>
+                  <textarea className="textarea" placeholder="Enter About" id="userEditAbout" defaultValue={this.state.about} onChange={this.changeState}></textarea>
 
-                <label htmlFor="userEditFavorites"><b>Favorite Cuisines</b></label>
-                <h6 style={{display: 'none'}}>This field is required</h6>
-                <input type="text" placeholder="Enter Favorite Cuisines" defaultValue={this.state.favorites} id="userEditFavorites" onChange={this.changeState}/>
+                  <label htmlFor="userEditFavorites"><b>Favorite Cuisines</b></label>
+                  <h6 style={{display: 'none'}}>This field is required</h6>
+                  <input type="text" placeholder="Enter Favorite Cuisines" defaultValue={this.state.favorites} id="userEditFavorites" onChange={this.changeState}/>
 
 
-                <input className="myButton" type="submit" id="saveUser" value="Save Changes" style={{display: 'none'}}/>
-              </div>
-            </form>
-        </div>
-        <div id='userProfileInfo'>
-          <h3 className='profileCatagory'>Username</h3>
-          <h4 className='profileValue'>{this.props.sessions.currentUser.username}</h4>
-          <h3 className='profileCatagory'>About</h3>
-          <h4 className='profileValue'>{this.props.sessions.currentUser.about}</h4>
-          <h3 className='profileCatagory'>Favorite Cuisines</h3>
-          <h4 className='profileValue'>{this.props.sessions.currentUser.favorites}</h4>
-          <UserFeed editReview={this.submitEdit} posts={this.props.currentUserPosts} sessions={this.props.sessions} deleteReview={this.deleteReview}></UserFeed>
+                  <input className="myButton" type="submit" id="saveUser" value="Save Changes" style={{display: 'none'}}/>
+                </div>
+              </form>
+          </div>
+          <div id='userProfileInfo'>
+            <h3 className='profileCatagory'>Username</h3>
+            <h4 className='profileValue'>{this.props.sessions.currentUser.username}</h4>
+            <h3 className='profileCatagory'>About</h3>
+            <h4 className='profileValue'>{this.props.sessions.currentUser.about}</h4>
+            <h3 className='profileCatagory'>Favorite Cuisines</h3>
+            <h4 className='profileValue'>{this.props.sessions.currentUser.favorites}</h4>
+            <UserFeed editReview={this.submitEdit} posts={this.props.currentUserPosts} sessions={this.props.sessions} deleteReview={this.deleteReview}></UserFeed>
+          </div>
         </div>
       </div>
     )
