@@ -50,3 +50,19 @@ h2#userProfile {
   margin: 1em auto;
 
 }
+
+
+.userPostLi {
+  border: 1px dashed black;
+  border-radius: 5px;
+  margin-bottom: .5em;
+}
+
+.userPostUl {
+  padding: 0;
+}
+
+
+.reviewTitle {
+  text-decoration: underline;
+}

@@ -6,6 +6,7 @@ class RestaurantFeed extends React.Component {
     event.preventDefault()
     event.target.reset()
     event.target.style.display= "none"
+    event.target.parentElement.parentElement.previousSibling.innerHTML = 'Post a Review'
     this.props.createReview(id, data)
   }
   toggleReviews = (event) => {
@@ -85,28 +86,29 @@ toggleSpan = (event) => {
                 <div className="singleRestaurant">
                   <h2 id="restName">{restaurant.username}</h2>
                   <div className="imageModalDiv">
-                    <div id="myModal" className="modal" style={{display: 'none'}}>
-                      <span className="close" onClick={this.toggleSpan}>X</span>
-                      <div className='modalContent'>
-                        <h2 className='modalTitle'>About {restaurant.username}</h2>
-                        <h4 className="caption">{restaurant.about}</h4>
-                      </div>
+                  <div id="myModal" className="modal" style={{display: 'none'}}>
+                    <span className="close" onClick={this.toggleSpan}>X</span>
+                    <div className='modalContent'>
+                      <h2 className='modalTitle'>About {restaurant.username}</h2>
+                      <h4 className="caption">{restaurant.about}</h4>
+                        <button className='viewReviews myButton' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
+                      <ul id="reviewList" style={{display:'none'}}>
+                          {restaurant.posts.map((post) => {
+                            return(
+                              <li key={post._id}>
+                                <h4>{post.title}</h4>
+                                <h4>{post.stars} Stars</h4>
+                                <h6>By: {post.author}</h6>
+                                <h5>{post.body}</h5>
+                              </li>
+                            )
+                          })}
+                        </ul>
                     </div>
-                    <img id="myImg" src={restaurant.img} alt={restaurant.about} onClick={this.toggleModal}/>
                   </div>
-                  <button className='viewReviews myButton' _id={restaurant._id} onClick={this.toggleReviews}>Reviews</button>
-                  <ul id="reviewList" style={{display:'none'}}>
-                      {restaurant.posts.map((post) => {
-                        return(
-                          <li key={post._id}>
-                            <h4>{post.title}</h4>
-                            <h4>{post.stars} Stars</h4>
-                            <h6>By: {post.author}</h6>
-                            <h5>{post.body}</h5>
-                          </li>
-                        )
-                      })}
-                    </ul>
+                  <img  className="modal-content" id="myImg" src={restaurant.img} alt={restaurant.about} onClick={this.toggleModal}/>
+                </div>
+
 
                     {(this.props.sessions.currentUser._id !== "") ?
                       <div id='allowPostsDiv'>
