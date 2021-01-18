@@ -14,6 +14,7 @@ ul.navBar {
   height: 100%;
   overflow: auto;
   animation: navBar 5s infinite;
+  z-index: 9999;
 }
 ul.navBar li {
   display: block;
