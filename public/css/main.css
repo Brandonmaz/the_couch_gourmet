@@ -1,3 +1,14 @@
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=3062&q=80");
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+h6 {
+  color: #d83526;
+}
 main {
   height: 100%;
 }
@@ -24,6 +35,12 @@ header {
 
 header h1 {
   margin: 0;
+}
+
+
+button{
+  display: block;
+  margin: 1em auto;
 }
 
 button:hover{

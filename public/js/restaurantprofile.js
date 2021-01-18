@@ -54,8 +54,10 @@ class RestaurantProfile extends React.Component {
   toggleEdit = (event) => {
     if(event.target.nextSibling.style.display === 'none') {
       event.target.nextSibling.style.display = 'block'
+      event.target.innerHTML = 'Cancel Edit'
       this.changeState(event)
     } else {
+      event.target.innerHTML = 'Edit This Restaurant'
       document.querySelector('#editRestForm').reset()
       event.target.nextSibling.style.display = 'none'
       this.setState({
@@ -98,13 +100,20 @@ class RestaurantProfile extends React.Component {
   render = () => {
     return (
       <div id='currentRestaurantProfile'>
-        <h4>{this.props.sessions.currentRestaurant.username}</h4>
-        <h5>{this.props.sessions.currentRestaurant.about}</h5>
-        <img src={this.props.sessions.currentRestaurant.password} alt={this.props.sessions.currentRestaurant.name}/>
-        <button id='deleteButton' onClick={this.deletePost} _id={this.props.sessions.currentRestaurant._id}>Delete Restaurant Profile</button>
-          <button id='editButton' onClick={this.toggleEdit}>Edit This Restaurant</button>
-          <div className='editDiv container' style={{display: 'none'}}>
-            <button id="upload_widget" class="cloudinary-button" onClick={this.openWidget}>Upload Profile Image</button>
+        <div className="card">
+          <h2 id="userProfile">Restaurant Profile Card</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9dsmG0mf7G_IbvdSFt7UkWhDwnOsBjtbEmQ&usqp=CAU" className="avatar"/>
+          <img src={this.props.sessions.currentRestaurant.password} alt={this.props.sessions.currentRestaurant.name}/>
+          <h1>{this.props.sessions.currentRestaurant.username}</h1>
+          <h3>About Our Restaurant</h3>
+          <h4>{this.props.sessions.currentRestaurant.about}</h4>
+
+
+
+          <button className="myButton restButton" id='editButton' onClick={this.toggleEdit}>Edit This Restaurant</button>
+
+          <div className='editDiv container profileDiv' style={{display: 'none'}}>
+            <button className="myButton" id="upload_widget" class="cloudinary-button" onClick={this.openWidget}>Upload Profile Image</button>
             <form onSubmit={this.submitForm} id='editRestForm' _id={this.props.sessions.currentRestaurant._id}>
 
                 <label htmlFor="name"><b>Name</b></label>
@@ -117,11 +126,13 @@ class RestaurantProfile extends React.Component {
                 <br/>
                 <label htmlFor="about"><b>About</b></label>
                 <h6>This field is required</h6>
-                <input type="text" id="about" placeholder="Enter About" onChange={this.changeState} defaultValue={this.props.sessions.currentRestaurant.about}/>
+                <textarea className="textarea" id="about" placeholder="Enter About" onChange={this.changeState} defaultValue={this.props.sessions.currentRestaurant.about}></textarea>
 
                 <input className="myButton" type="submit" id="submitEdit" value="Edit Restaurant Profile" style={{display: 'block'}}/>
                 </form>
             </div>
+            <button className="myButton restButton" id='deleteButton' onClick={this.deletePost} _id={this.props.sessions.currentRestaurant._id}>Delete Restaurant Profile</button>
+        </div>
       </div>
      )
   }

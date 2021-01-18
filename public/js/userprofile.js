@@ -109,7 +109,7 @@ class UserProfile extends React.Component {
 
                 <label htmlFor="userEditAbout"><b>About</b></label>
                 <h6 style={{display: 'none'}}>This field is required</h6>
-                <input type="text" placeholder="Enter About" id="userEditAbout" defaultValue={this.state.about} onChange={this.changeState}/>
+                <textarea className="textarea" placeholder="Enter About" id="userEditAbout" defaultValue={this.state.about} onChange={this.changeState}></textarea>
 
                 <label htmlFor="userEditFavorites"><b>Favorite Cuisines</b></label>
                 <h6 style={{display: 'none'}}>This field is required</h6>
