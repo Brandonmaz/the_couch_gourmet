@@ -22,6 +22,10 @@
 .modalContent {
   padding: 20px;
 }
+.bottomLine {
+  padding: 10px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
 #myImg {
   border-radius: 5px;
   display: block;

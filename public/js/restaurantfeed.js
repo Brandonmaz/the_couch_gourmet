@@ -99,7 +99,7 @@ toggleSpan = (event) => {
                                 <h4>{post.title}</h4>
                                 <h4>{post.stars} Stars</h4>
                                 <h6>By: {post.author}</h6>
-                                <h5>{post.body}</h5>
+                                <h5 className="bottomLine">{post.body}</h5>
                               </li>
                             )
                           })}
